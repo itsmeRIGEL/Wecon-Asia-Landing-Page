@@ -1,0 +1,1498 @@
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="WECON is a media ecosystem that brings together leading brands in technology, marketing, and human resources across Asia.">
+    <title>WECON | Connecting Ideas. Shaping Industries.</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    @vite(['resources/js/app.js'])
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --navy: #0B2B55;
+            --navy-light: #0e3568;
+            --blue: #1261B5;
+            --blue-light: #1a75d4;
+            --hero-bg: #EAF3FC;
+            --red: #C0392B;
+            --red-light: #e74c3c;
+            --gold: #C8962A;
+            --gold-light: #e0aa30;
+            --green: #1a7a5e;
+            --section-alt: #F4F7FA;
+            --text-dark: #0B2B55;
+            --text-body: #4a5568;
+            --text-muted: #718096;
+            --border: #e2e8f0;
+            --white: #ffffff;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scrollbar-width: none; /* Firefox */
+            -ms-overflow-style: none; /* IE and Edge */
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+            background: #fff;
+            padding-top: 0;
+            scrollbar-width: none; /* Firefox */
+            -ms-overflow-style: none; /* IE and Edge */
+        }
+        section[id] { scroll-margin-top: 85px; }
+        /* Hide scrollbar for Chrome, Safari, and Opera */
+        ::-webkit-scrollbar {
+            display: none;
+            width: 0;
+            height: 0;
+        }
+
+        /* ===== REVEAL ANIMATION ===== */
+        .reveal {
+            opacity: 0;
+            transform: translateY(28px);
+            transition: opacity 0.65s ease, transform 0.65s ease;
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ===== NAVBAR ===== */
+        #navbar {
+            position: fixed;
+            top: 14px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: calc(100% - 3rem);
+            max-width: 1320px;
+            z-index: 1000;
+            background: transparent;
+            backdrop-filter: none;
+            -webkit-backdrop-filter: none;
+            border: 1px solid transparent;
+            border-radius: 9999px;
+            height: 68px;
+            display: flex;
+            align-items: center;
+            box-shadow: none;
+            transition: box-shadow 0.3s ease, background 0.3s ease, border-color 0.3s ease, backdrop-filter 0.3s ease, -webkit-backdrop-filter 0.3s ease;
+        }
+        #navbar.scrolled {
+            box-shadow: 0 8px 32px -4px rgba(11, 43, 85, 0.12), 0 2px 6px rgba(0, 0, 0, 0.04);
+            background: rgba(255, 255, 255, 0.96);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-color: rgba(226, 232, 240, 0.85);
+        }
+
+        .nav-container {
+            width: 100%;
+            margin: 0 auto;
+            padding: 0 2.25rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 100%;
+        }
+
+        /* --- Logo Area --- */
+        .nav-logo {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.65rem;
+            text-decoration: none;
+            flex-shrink: 0;
+            transition: opacity 0.2s ease;
+        }
+        .nav-logo:hover { opacity: 0.88; }
+        .nav-logo-img {
+            height: 42px;
+            max-height: 46px;
+            width: auto;
+            object-fit: contain;
+            display: block;
+            transition: transform 0.2s ease;
+        }
+        .nav-logo:hover .nav-logo-img {
+            transform: scale(1.02);
+        }
+        .nav-logo-text {
+            font-weight: 800;
+            font-size: 1.35rem;
+            letter-spacing: 0.12em;
+            color: #0b2b55;
+            text-transform: uppercase;
+        }
+
+        /* --- Nav Links (Matching Reference Photo) --- */
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 2.35rem;
+            list-style: none;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        .nav-links li {
+            display: flex;
+            align-items: center;
+            height: 100%;
+        }
+        .nav-links li a {
+            position: relative;
+            text-decoration: none;
+            color: #4b5563;
+            font-size: 0.94rem;
+            font-weight: 500;
+            padding: 0.5rem 0;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: color 0.2s ease;
+            white-space: nowrap;
+        }
+        /* Blue underline matching exact text width */
+        .nav-links li a::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 0;
+            width: 100%;
+            height: 2.5px;
+            background: #2563eb;
+            border-radius: 2px;
+            transform: scaleX(0);
+            transform-origin: center;
+            transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s ease;
+            opacity: 0;
+        }
+        .nav-links li a:hover {
+            color: #0b2b55;
+        }
+        .nav-links li a:hover::after {
+            transform: scaleX(1);
+            opacity: 0.65;
+        }
+        .nav-links li a.active {
+            color: #0b2b55;
+            font-weight: 600;
+        }
+        .nav-links li a.active::after {
+            transform: scaleX(1);
+            opacity: 1;
+            background: #2563eb;
+        }
+
+        /* --- CTA Outlined Pill Button (Matching Reference Photo) --- */
+        .nav-cta-wrapper {
+            display: flex;
+            align-items: center;
+            flex-shrink: 0;
+        }
+        .nav-cta-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
+            padding: 0.52rem 1.4rem;
+            border-radius: 9999px;
+            border: 1.5px solid #0b2b55;
+            color: #0b2b55;
+            font-size: 0.875rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+            white-space: nowrap;
+            background: transparent;
+        }
+        .nav-cta-btn .cta-arrow {
+            display: inline-block;
+            transition: transform 0.2s ease;
+            font-size: 1rem;
+            line-height: 1;
+        }
+        .nav-cta-btn:hover {
+            background: #0b2b55;
+            color: #ffffff;
+            box-shadow: 0 4px 14px rgba(11, 43, 85, 0.18);
+            transform: translateY(-1px);
+        }
+        .nav-cta-btn:hover .cta-arrow {
+            transform: translateX(3px);
+        }
+
+        /* --- Mobile Navigation Toggle Button --- */
+        .nav-toggle {
+            display: none;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+            flex-direction: column;
+            gap: 5px;
+            z-index: 1001;
+        }
+        .nav-toggle span {
+            display: block;
+            width: 22px;
+            height: 2px;
+            background: #0b2b55;
+            border-radius: 2px;
+            transition: transform 0.25s ease, opacity 0.25s ease;
+        }
+        .nav-toggle.active span:nth-child(1) {
+            transform: translateY(7px) rotate(45deg);
+        }
+        .nav-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+        .nav-toggle.active span:nth-child(3) {
+            transform: translateY(-7px) rotate(-45deg);
+        }
+        .nav-links li.mobile-cta { display: none !important; }
+
+        /* ===== HEXAGON HELPER ===== */
+        .hex-clip {
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+        }
+
+        /* ===== HERO SECTION ===== */
+        /* =================================================================================================== */
+        /* [ATTACH HERO BACKGROUND IMAGE HERE] Replace url or drop your image into public/images/hero-bg.jpg */
+        /* =================================================================================================== */
+        #hero {
+            position: relative;
+            background-color: var(--hero-bg);
+            background-image: 
+                linear-gradient(135deg, rgba(234, 243, 252, 0.86) 0%, rgba(214, 233, 250, 0.68) 45%, rgba(18, 97, 181, 0.42) 80%, rgba(11, 43, 85, 0.55) 100%),
+                url('{{ asset('images/hero-bg.jpg') }}');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            padding: 90px 2rem 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+        .hero-inner {
+            max-width: 1260px; width: 100%; margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1.25fr;
+           
+            align-items: center;
+        }
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+        .hero-tag {
+            font-size: 0.75rem; font-weight: 700; letter-spacing: 0.15em;
+            text-transform: uppercase; color: var(--blue);
+            margin-bottom: 1.25rem; display: block;
+        }
+        .hero-title {
+            font-size: clamp(2.25rem, 4vw, 3.25rem);
+            font-weight: 800; line-height: 1.15;
+            color: var(--navy);
+            margin-bottom: 1.25rem;
+        }
+        .hero-title .highlight { color: var(--blue); }
+        .hero-desc {
+            font-size: 1rem; color: var(--text-body);
+            line-height: 1.75; margin-bottom: 2rem;
+            max-width: 440px;
+        }
+        .hero-brands-logos {
+            display: flex; align-items: center; gap: 1.5rem;
+            margin-top: 2rem; flex-wrap: wrap;
+        }
+        .brand-logo-item {
+            display: flex; align-items: center; gap: 0.4rem;
+            font-size: 0.75rem; font-weight: 700; letter-spacing: 0.05em;
+            text-transform: uppercase; color: var(--text-muted);
+        }
+        .brand-logo-dot {
+            width: 28px; height: 28px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            color: white; font-weight: 900; font-size: 0.7rem;
+        }
+        .dot-blue { background: var(--blue); }
+        .dot-red { background: var(--red); }
+        .dot-green { background: var(--green); }
+
+        /* ===== HERO VISUAL PHOTO DISPLAY ===== */
+        .hero-visual-wrap {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            max-width: 680px;
+            margin: 0 auto;
+        }
+        .hero-visual-glow {
+            position: absolute;
+            inset: 0%;
+            background: radial-gradient(ellipse at center, rgba(18, 97, 181, 0.22) 0%, rgba(200, 150, 42, 0.08) 50%, transparent 72%);
+            filter: blur(45px);
+            z-index: 1;
+            pointer-events: none;
+            border-radius: 50%;
+        }
+        .hero-photo-card {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            background: transparent;
+            box-shadow: none;
+            border-radius: 0;
+            overflow: visible;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            animation: heroVisualFloat 6s ease-in-out infinite;
+        }
+        .hero-photo-card:hover {
+            transform: translateY(-6px) scale(1.02);
+        }
+        @keyframes heroVisualFloat {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-8px);
+            }
+        }
+        .hero-photo-img {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+            display: block;
+            filter: drop-shadow(0 18px 36px rgba(11, 43, 85, 0.22));
+            transition: transform 0.4s ease, filter 0.4s ease;
+        }
+        .hero-photo-card:hover .hero-photo-img {
+            transform: scale(1.02);
+            filter: drop-shadow(0 26px 48px rgba(11, 43, 85, 0.3));
+        }
+
+        /* Floating Brand Badges */
+        .hero-floating-badge {
+            position: absolute;
+            z-index: 3;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.55rem;
+            padding: 0.6rem 1.15rem;
+            border-radius: 9999px;
+            background: rgba(255, 255, 255, 0.94);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border: 1px solid rgba(255, 255, 255, 0.95);
+            box-shadow: 0 10px 25px -4px rgba(11, 43, 85, 0.16), 0 2px 8px rgba(0, 0, 0, 0.04);
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: #0b2b55;
+            letter-spacing: 0.02em;
+            white-space: nowrap;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .hero-floating-badge:hover {
+            transform: translateY(-3px) scale(1.04);
+            box-shadow: 0 14px 30px -4px rgba(11, 43, 85, 0.24);
+        }
+        .badge-dot {
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+        .badge-dot-blue { background: #1261B5; box-shadow: 0 0 8px rgba(18, 97, 181, 0.6); }
+        .badge-dot-red { background: #ea580c; box-shadow: 0 0 8px rgba(234, 88, 12, 0.6); }
+        .badge-dot-green { background: #059669; box-shadow: 0 0 8px rgba(5, 150, 105, 0.6); }
+
+        .badge-pos-1 {
+            top: 24px;
+            left: -20px;
+            animation: badgeFloat1 5s ease-in-out infinite;
+        }
+        .badge-pos-2 {
+            top: 48%;
+            right: -24px;
+            animation: badgeFloat2 6s ease-in-out infinite 0.5s;
+        }
+        .badge-pos-3 {
+            bottom: 24px;
+            left: 20px;
+            animation: badgeFloat3 5.5s ease-in-out infinite 1s;
+        }
+        @keyframes badgeFloat1 {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-6px); }
+        }
+        @keyframes badgeFloat2 {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(6px); }
+        }
+        @keyframes badgeFloat3 {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
+        /* ===== BTN STYLES ===== */
+        .btn {
+            display: inline-flex; align-items: center; gap: 0.4rem;
+            padding: 0.75rem 1.75rem; border-radius: 6px;
+            font-weight: 600; font-size: 0.9rem;
+            text-decoration: none; cursor: pointer;
+            border: none; font-family: 'Inter', sans-serif;
+            transition: all 0.25s;
+        }
+        .btn-blue {
+            background: var(--blue); color: white;
+            box-shadow: 0 4px 16px rgba(18, 97, 181, 0.3);
+        }
+        .btn-blue:hover {
+            background: var(--blue-light);
+            box-shadow: 0 6px 24px rgba(18, 97, 181, 0.45);
+            transform: translateY(-2px);
+        }
+        .btn-navy {
+            background: var(--navy); color: white;
+        }
+        .btn-navy:hover { background: var(--navy-light); transform: translateY(-2px); }
+        .btn-outline-navy {
+            background: transparent; color: var(--navy);
+            border: 2px solid var(--navy);
+        }
+        .btn-outline-navy:hover { background: var(--navy); color: white; transform: translateY(-2px); }
+        .btn-outline-white {
+            background: transparent; color: white;
+            border: 2px solid rgba(255,255,255,0.5);
+        }
+        .btn-outline-white:hover { background: rgba(255,255,255,0.1); border-color: white; }
+
+        /* ===== SECTION SHARED ===== */
+        .section-container { max-width: 1200px; margin: 0 auto; padding: 1rem 1rem; }
+        .section-tag {
+            font-size: 0.72rem; font-weight: 700; letter-spacing: 0.15em;
+            text-transform: uppercase; color: var(--blue);
+            display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem;
+        }
+        .section-tag::after {
+            content: ''; display: block; width: 40px; height: 2px; background: var(--blue);
+        }
+        .section-title {
+            font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+            font-weight: 800; color: var(--navy); line-height: 1.2; margin-bottom: 1rem;
+        }
+        .section-desc {
+            font-size: 0.95rem; color: var(--text-body); line-height: 1.75;
+            max-width: 480px; margin-bottom: 2rem;
+        }
+
+        /* ===== WHO WE ARE ===== */
+        /* ===== WHO WE ARE SECTION ===== */
+        #who {
+            background: var(--white);
+            padding: 3rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+        #who .section-tag {
+            color: red;
+        }
+        #who .section-tag::after {
+            background: red;
+        }
+        #who .btn-outline-navy:hover {
+            background: red;
+            border-color: red;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 0, 0, 0.3);
+        }
+        .who-inner {
+            display: grid;
+            grid-template-columns: 1.15fr 1.25fr;
+            gap: 4rem;
+            align-items: center;
+        }
+        .who-visual-wrap {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            max-width: 520px;
+            margin: 0 auto;
+        }
+        .who-visual-glow {
+            position: absolute;
+            inset: 0%;
+            background: radial-gradient(ellipse at center, rgba(18, 97, 181, 0.16) 0%, rgba(200, 150, 42, 0.08) 50%, transparent 72%);
+            filter: blur(45px);
+            z-index: 1;
+            pointer-events: none;
+            border-radius: 50%;
+        }
+        .who-photo-card {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            background: transparent;
+            box-shadow: none;
+            border-radius: 0;
+            overflow: visible;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            animation: whoVisualFloat 6s ease-in-out infinite 0.5s;
+        }
+        .who-photo-card:hover {
+            transform: translateY(-6px) scale(1.02);
+        }
+        @keyframes whoVisualFloat {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-8px);
+            }
+        }
+        .who-photo-img {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+            display: block;
+            filter: drop-shadow(0 18px 36px rgba(11, 43, 85, 0.14));
+            transition: transform 0.4s ease, filter 0.4s ease;
+        }
+        .who-photo-card:hover .who-photo-img {
+            transform: scale(1.02);
+            filter: drop-shadow(0 26px 48px rgba(11, 43, 85, 0.22));
+        }
+
+        /* ===== OUR BRANDS ===== */
+        #brands {
+            background: #f7f4fa;
+            color: #ffffff;
+            padding: 1.5rem 0 3.5rem;
+            position: relative;
+        }
+        .brands-header {
+            text-align: center;
+            max-width: 680px;
+            margin: 0 auto 3.5rem;
+        }
+        .brands-tag {
+            color: #60a5fa;
+            font-size: 0.84rem;
+            font-weight: 700;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            display: inline-block;
+            margin-bottom: 0.6rem;
+        }
+        .brands-tag::after {
+            display: none;
+        }
+        .brands-title {
+            color: #4a5568 !important;
+            font-size: 2.4rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.85rem;
+        }
+        .brands-desc {
+            color: #94a3b8;
+            font-size: 1rem;
+            line-height: 1.65;
+            margin: 0 auto;
+        }
+
+        .brands-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            max-width: 1220px;
+            margin: 0 auto;
+        }
+
+        /* --- Individual Brand Card Container --- */
+        .brand-card {
+            background: #f7f4fa;
+            border-radius: 18px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 10px 30px -4px rgba(0, 0, 0, 0.25);
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease, border-color 0.3s ease;
+            position: relative;
+        }
+        .brand-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 45px -6px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Top Colored Accent Stripe */
+        .brand-card-top-accent {
+            height: 5px;
+            width: 100%;
+        }
+        .brand-card-blue .brand-card-top-accent { background: #2563eb; }
+        .brand-card-orange .brand-card-top-accent { background: #f97316; }
+        .brand-card-green .brand-card-top-accent { background: #10b981; }
+
+        .brand-card-blue:hover { border-color: rgba(37, 99, 235, 0.5); }
+        .brand-card-orange:hover { border-color: rgba(249, 115, 22, 0.5); }
+        .brand-card-green:hover { border-color: rgba(16, 185, 129, 0.5); }
+
+        /* Top White Logo Box */
+        .brand-card-logo-box {
+            background: #ffffff;
+            height: 115px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.25rem 2rem;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        .brand-logo-uptech {
+            font-size: 2.15rem;
+            font-weight: 800;
+            color: #1d4ed8;
+            letter-spacing: -0.03em;
+            font-family: 'Inter', sans-serif;
+        }
+        .brand-logo-marketech {
+            font-size: 1.85rem;
+            font-weight: 900;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            font-family: 'Inter', sans-serif;
+        }
+        .brand-logo-marketech .marke { color: #0f172a; }
+        .brand-logo-marketech .tech { color: #ea580c; }
+        .brand-logo-hrforward {
+            font-size: 1.95rem;
+            font-weight: 800;
+            color: #059669;
+            letter-spacing: -0.02em;
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* Card Body */
+        .brand-card-body {
+            padding: 1.85rem 1.85rem 2rem;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            gap: 1.15rem;
+        }
+
+        /* Pill Badge */
+        .brand-badge {
+            display: inline-flex;
+            align-items: center;
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            padding: 0.35rem 0.85rem;
+            border-radius: 9999px;
+            align-self: flex-start;
+        }
+        .badge-blue {
+            background: rgba(37, 99, 235, 0.18);
+            color: #60a5fa;
+            border: 1px solid rgba(96, 165, 250, 0.3);
+        }
+        .badge-orange {
+            background: rgba(249, 115, 22, 0.18);
+            color: #fb923c;
+            border: 1px solid rgba(251, 146, 60, 0.3);
+        }
+        .badge-green {
+            background: rgba(16, 185, 129, 0.18);
+            color: #34d399;
+            border: 1px solid rgba(52, 211, 153, 0.3);
+        }
+
+        /* Description */
+        .brand-card-desc {
+            font-size: 0.92rem;
+            color: #4a5568;
+            line-height: 1.65;
+            margin: 0;
+            flex: 1;
+        }
+
+        /* Audience Line */
+        .brand-audience {
+            font-size: 0.85rem;
+            line-height: 1.5;
+            color: #94a3b8;
+            padding-top: 0.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .audience-label {
+            font-weight: 700;
+            color: #4a5568;
+            margin-right: 0.35rem;
+        }
+        .audience-value {
+            color: #4a5568;
+        }
+
+        /* Action Link */
+        .brand-card-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
+            font-size: 0.92rem;
+            font-weight: 700;
+            text-decoration: none;
+            margin-top: 0.25rem;
+            transition: gap 0.22s ease, opacity 0.2s ease;
+        }
+        .brand-card-link .arrow {
+            transition: transform 0.22s ease;
+        }
+        .brand-card-link:hover .arrow {
+            transform: translateX(4px);
+        }
+        .link-blue { color: #60a5fa; }
+        .link-blue:hover { color: #93c5fd; }
+        .link-orange { color: #fb923c; }
+        .link-orange:hover { color: #fdba74; }
+        .link-green { color: #34d399; }
+        .link-green:hover { color: #6ee7b7; }
+
+        /* ===== ECOSYSTEM ===== */
+        #ecosystem {
+            background: var(--navy);
+            color: white;
+        }
+        .ecosystem-inner {
+            display: grid; grid-template-columns: 1fr 1.5fr; gap: 4rem; align-items: center;
+        }
+        #ecosystem .section-tag { color: #7fb3ff; }
+        #ecosystem .section-tag::after { background: #7fb3ff; }
+        #ecosystem .section-title { color: white; }
+        #ecosystem .section-desc { color: rgba(255,255,255,0.75); }
+        .ecosystem-pillars {
+            display: flex; align-items: center; justify-content: center; gap: 2rem;
+        }
+        .pillar-item {
+            display: flex; flex-direction: column; align-items: center; gap: 1rem;
+            text-align: center;
+        }
+        .pillar-hex {
+            width: 100px; height: 100px;
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 2rem;
+            transition: transform 0.3s;
+        }
+        .pillar-hex:hover { transform: scale(1.1); }
+        .ph-blue { background: var(--blue); }
+        .ph-red { background: var(--red); }
+        .ph-gold { background: var(--gold); }
+        .pillar-connector {
+            width: 30px; height: 2px;
+            background: rgba(255,255,255,0.2);
+            margin-top: -1rem;
+        }
+        .pillar-name {
+            font-size: 0.78rem; font-weight: 700; letter-spacing: 0.1em;
+            text-transform: uppercase; color: white;
+        }
+        .pillar-desc { font-size: 0.78rem; color: rgba(255,255,255,0.6); line-height: 1.5; }
+
+        /* ===== IMPACT ===== */
+        #impact { background: var(--white); }
+        .impact-inner {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;
+        }
+        .impact-stats {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;
+        }
+        .impact-stat { text-align: center; }
+        .impact-stat-icon {
+            width: 56px; height: 56px; background: var(--hero-bg);
+            border-radius: 12px; display: flex; align-items: center; justify-content: center;
+            font-size: 1.5rem; margin: 0 auto 0.75rem;
+        }
+        .impact-stat-num {
+            font-size: 2.25rem; font-weight: 900; color: var(--navy);
+            font-variant-numeric: tabular-nums; display: block;
+        }
+        .impact-stat-label { font-size: 0.82rem; color: var(--text-muted); font-weight: 500; }
+
+        /* ===== FEATURED ===== */
+        #featured { background: var(--section-alt); }
+        .featured-header {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;
+            align-items: end; margin-bottom: 2.5rem;
+        }
+        .article-cards {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
+        }
+        .article-card {
+            background: white; border-radius: 12px; overflow: hidden;
+            border: 1px solid var(--border); transition: all 0.35s;
+        }
+        .article-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.1);
+        }
+        .article-thumb {
+            height: 160px; display: flex; align-items: center; justify-content: center;
+            font-size: 3rem; position: relative; overflow: hidden;
+        }
+        .at-blue { background: linear-gradient(135deg, #1261B5, #0a4a8a); }
+        .at-red { background: linear-gradient(135deg, #C0392B, #7b241c); }
+        .at-green { background: linear-gradient(135deg, #1a7a5e, #0d5c45); }
+        .article-brand-tag {
+            position: absolute; top: 0.75rem; left: 0.75rem;
+            font-size: 0.65rem; font-weight: 700; letter-spacing: 0.08em;
+            text-transform: uppercase; background: rgba(0,0,0,0.35);
+            color: white; padding: 0.2rem 0.6rem; border-radius: 4px;
+        }
+        .article-body { padding: 1.25rem; }
+        .article-date { font-size: 0.75rem; color: var(--text-muted); margin-bottom: 0.5rem; }
+        .article-title {
+            font-size: 0.9rem; font-weight: 700; color: var(--navy);
+            line-height: 1.4; margin-bottom: 0.75rem;
+        }
+        .article-link {
+            display: inline-flex; align-items: center; gap: 0.3rem;
+            font-size: 0.8rem; font-weight: 600; color: var(--blue);
+            text-decoration: none; transition: gap 0.2s;
+        }
+        .article-link:hover { gap: 0.6rem; }
+
+        /* ===== CTA ===== */
+        #cta {
+            background: var(--blue);
+            position: relative; overflow: hidden;
+        }
+        .cta-inner {
+            max-width: 1200px; margin: 0 auto; padding: 5rem 2rem;
+            text-align: center; position: relative; z-index: 1;
+        }
+        .cta-deco {
+            position: absolute;
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+            pointer-events: none;
+        }
+        .cta-deco-1 { width: 180px; height: 180px; background: rgba(11,43,85,0.4); left: -40px; top: -30px; }
+        .cta-deco-2 { width: 120px; height: 120px; background: rgba(192,57,43,0.5); left: 120px; bottom: -20px; }
+        .cta-deco-3 { width: 150px; height: 150px; background: rgba(200,150,42,0.45); right: -30px; top: 20px; }
+        .cta-deco-4 { width: 90px; height: 90px; background: rgba(11,43,85,0.3); right: 120px; bottom: -10px; }
+        .cta-title { font-size: clamp(2rem, 4vw, 2.75rem); font-weight: 800; color: white; margin-bottom: 1rem; }
+        .cta-desc { font-size: 1rem; color: rgba(255,255,255,0.8); margin-bottom: 2.5rem; }
+        .cta-btn {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            padding: 0.875rem 2.25rem; border-radius: 6px;
+            background: white; color: var(--blue);
+            font-weight: 700; font-size: 0.95rem; text-decoration: none;
+            transition: all 0.25s; box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+        }
+        .cta-btn:hover { transform: translateY(-3px); box-shadow: 0 8px 30px rgba(0,0,0,0.25); }
+
+        /* ===== FOOTER ===== */
+        footer { background: var(--navy); color: white; padding: 2rem; }
+        .footer-inner {
+            max-width: 1200px; margin: 0 auto;
+            display: flex; align-items: center; justify-content: space-between;
+            flex-wrap: wrap; gap: 1.5rem;
+        }
+        .footer-logo { display: flex; align-items: center; gap: 0.5rem; text-decoration: none; }
+        .footer-logo-icon {
+            width: 32px; height: 32px;
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+            background: white;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .footer-logo-inner {
+            width: 18px; height: 18px;
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+            background: var(--navy);
+        }
+        .footer-logo-text { font-weight: 800; font-size: 1.1rem; letter-spacing: 0.1em; color: white; text-transform: uppercase; }
+        .footer-nav { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+        .footer-nav a { text-decoration: none; font-size: 0.82rem; color: rgba(255,255,255,0.65); transition: color 0.2s; }
+        .footer-nav a:hover { color: white; }
+        .footer-right { display: flex; align-items: center; gap: 1.5rem; }
+        .footer-social { display: flex; gap: 0.75rem; }
+        .social-icon {
+            width: 34px; height: 34px; border-radius: 6px;
+            background: rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center;
+            font-size: 0.8rem; color: rgba(255,255,255,0.7); text-decoration: none;
+            transition: all 0.2s;
+        }
+        .social-icon:hover { background: rgba(255,255,255,0.2); color: white; }
+        .footer-copy { font-size: 0.75rem; color: rgba(255,255,255,0.4); }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 1024px) {
+            .hero-inner, .who-inner, .ecosystem-inner, .impact-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+            .hero-visual-wrap { max-width: 580px; margin-top: 1rem; }
+            .who-visual-wrap { max-width: 500px; }
+            .featured-header { grid-template-columns: 1fr; }
+            .brands-cards { gap: 1.25rem; }
+        }
+        @media (max-width: 900px) {
+            .brands-cards { grid-template-columns: 1fr; max-width: 480px; margin: 0 auto; gap: 2rem; }
+            #navbar {
+                top: 10px;
+                width: calc(100% - 1.5rem);
+                height: 62px;
+                border-radius: 9999px;
+            }
+            #navbar.menu-open {
+                background: rgba(255, 255, 255, 0.98);
+                border-color: rgba(226, 232, 240, 0.85);
+                box-shadow: 0 8px 24px -2px rgba(11, 43, 85, 0.1);
+            }
+            .nav-container { padding: 0 1.25rem; }
+            .nav-toggle { display: flex; }
+            .nav-links {
+                position: fixed;
+                top: 78px;
+                left: 12px;
+                right: 12px;
+                background: #ffffff;
+                border-radius: 20px;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0;
+                height: auto;
+                padding: 1.25rem 2rem 1.75rem;
+                border: 1px solid #e2e8f0;
+                box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+                transform: translateY(-130%);
+                opacity: 0;
+                pointer-events: none;
+                transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease;
+            }
+            .nav-links.open {
+                transform: translateY(0);
+                opacity: 1;
+                pointer-events: auto;
+            }
+            .nav-links li {
+                width: 100%;
+                height: auto;
+            }
+            .nav-links li a {
+                width: 100%;
+                padding: 0.9rem 0;
+                font-size: 1rem;
+                justify-content: flex-start;
+                border-bottom: 1px solid #f1f5f9;
+            }
+            .nav-links li a::after {
+                display: none;
+            }
+            .nav-links li a.active {
+                color: #2563eb;
+                font-weight: 600;
+            }
+            .nav-cta-wrapper { display: none; }
+            .nav-links li.mobile-cta {
+                display: block !important;
+                width: 100%;
+                padding-top: 1.25rem;
+            }
+            .mobile-cta .nav-cta-btn {
+                display: flex;
+                justify-content: center;
+                width: 100%;
+            }
+        }
+        @media (max-width: 768px) {
+            .hero-visual-wrap { max-width: 440px; }
+            .who-visual-wrap { max-width: 360px; }
+            .hero-floating-badge { padding: 0.45rem 0.85rem; font-size: 0.72rem; }
+            .badge-pos-1 { left: -6px; top: 10px; }
+            .badge-pos-2 { right: -6px; }
+            .badge-pos-3 { left: 8px; bottom: 10px; }
+            .brands-cards { grid-template-columns: 1fr; }
+            .ecosystem-pillars { flex-direction: column; }
+            .pillar-connector { display: none; }
+            .article-cards { grid-template-columns: 1fr; }
+            .impact-stats { grid-template-columns: 1fr 1fr; }
+            .footer-inner { flex-direction: column; align-items: flex-start; }
+            .cta-inner { padding: 4rem 1.5rem; }
+        }
+        @media (max-width: 480px) {
+            .hero-visual-wrap { max-width: 100%; }
+            .hero-floating-badge { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ===== NAVBAR ===== -->
+<nav id="navbar">
+    <div class="nav-container">
+        <!-- ========================================================================================= -->
+        <!-- >>> ATTACH YOUR LOGO HERE: Put your logo on the line below (replace src or paste SVG) <<< -->
+        <!-- ========================================================================================= -->
+        <a href="#" class="nav-logo" aria-label="WECON Home">
+            <img src="{{ asset('images/logo1.png') }}?v={{ file_exists(public_path('images/logo1.png')) ? filemtime(public_path('images/logo1.png')) : 1 }}" alt="WECON" class="nav-logo-img">
+        </a>
+
+        <!-- Mobile Navigation Toggle -->
+        <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation menu" type="button">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <!-- Navigation Links (Matching Reference Design) -->
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#hero" class="active" id="nav-home">Home</a></li>
+            <li><a href="#who" id="nav-about">About</a></li>
+            <li><a href="#brands" id="nav-brands">Our Brands</a></li>
+            <li><a href="#ecosystem" id="nav-what">What We Do</a></li>
+            <li><a href="#featured" id="nav-latest">Latest</a></li>
+            <li><a href="#cta" id="nav-contact">Contact</a></li>
+            <li class="mobile-cta">
+                @if (Route::has('login'))
+                    @auth
+                        <a href="{{ url('/dashboard') }}" class="nav-cta-btn">Dashboard</a>
+                    @else
+                        <a href="#brands" class="nav-cta-btn">Explore Our Brands <span class="cta-arrow">&rarr;</span></a>
+                    @endauth
+                @else
+                    <a href="#brands" class="nav-cta-btn">Explore Our Brands <span class="cta-arrow">&rarr;</span></a>
+                @endif
+            </li>
+        </ul>
+
+        <!-- Desktop CTA Button (Pill Button Matching Reference Design) -->
+        <div class="nav-cta-wrapper">
+            @if (Route::has('login'))
+                @auth
+                    <a href="{{ url('/dashboard') }}" class="nav-cta-btn">Dashboard</a>
+                @else
+                    <a href="#brands" class="nav-cta-btn" id="nav-explore-btn">Explore Our Brands <span class="cta-arrow">&rarr;</span></a>
+                @endauth
+            @else
+                <a href="#brands" class="nav-cta-btn" id="nav-explore-btn">Explore Our Brands <span class="cta-arrow">&rarr;</span></a>
+            @endif
+        </div>
+    </div>
+</nav>
+
+<!-- ===== HERO ===== -->
+<section id="hero">
+    <div class="hero-inner">
+        <!-- Left Content -->
+        <div class="hero-content reveal" style="transition-delay: 0.05s">
+            <span class="hero-tag">The WECON Asia</span>
+            <h1 class="hero-title">
+                Connecting Ideas.<br>
+                <span class="highlight">Shaping Industries.</span>
+            </h1>
+            <p class="hero-desc">
+                WECON is a media company that brings together leading brands in technology, marketing, and human resources across Asia.
+            </p>
+            <a href="#brands" class="btn btn-blue" id="hero-explore-btn">Explore Our Brands &rarr;</a>
+        </div>
+
+        <!-- ==================================================================================================== -->
+        <!-- [ATTACH HERO VISUAL PHOTO HERE] Replace url or drop your PNG file into public/images/hero-visual.png -->
+        <!-- ==================================================================================================== -->
+        <!-- Right Visual Photo Display -->
+        <div class="hero-visual-wrap reveal" style="transition-delay: 0.15s">
+            <div class="hero-visual-glow"></div>
+            <!-- Main Photo Card -->
+            <div class="hero-photo-card">
+                <img src="{{ asset('images/hero-visual.png') }}?v={{ file_exists(public_path('images/hero-visual.png')) ? filemtime(public_path('images/hero-visual.png')) : 1 }}" 
+                     alt="WECON Asia - Media Ecosystem" 
+                     class="hero-photo-img" 
+                     id="hero-visual-photo">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== WHO WE ARE ===== -->
+<section id="who">
+    <div class="section-container">
+        <div class="who-inner">
+            <!-- ==================================================================================================== -->
+            <!-- [ATTACH WHO WE ARE PHOTO HERE] Replace url or drop your PNG file into public/images/who-visual.png   -->
+            <!-- ==================================================================================================== -->
+            <!-- Left Visual Photo Display -->
+            <div class="who-visual-wrap reveal" style="transition-delay: 0.05s">
+                <div class="who-visual-glow"></div>
+                <div class="who-photo-card">
+                    <img src="{{ asset('images/who-visual.png') }}?v={{ file_exists(public_path('images/who-visual.png')) ? filemtime(public_path('images/who-visual.png')) : 1 }}" 
+                         alt="WECON Asia - Who We Are" 
+                         class="who-photo-img" 
+                         id="who-visual-photo">
+                </div>
+            </div>
+            <div class="reveal" style="transition-delay:0.1s">
+                <span class="section-tag">Who We Are</span>
+                <h2 class="section-title">More Than Media.<br><span style="color:red">We're a Movement.</span></h2>
+                <p class="section-desc">
+                    WECON is a forward-thinking media company that connects industries, empowers professionals, and builds communities through trusted content and meaningful conversations.
+                </p>
+                <a href="#ecosystem" class="btn btn-outline-navy">Learn More &rarr;</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== OUR BRANDS ===== -->
+<section id="brands">
+    <div class="section-container">
+        <div class="brands-header reveal">
+            <h2 class="brands-title">Our Brands</h2>
+            <p class="brands-desc">
+                Three industry-leading media platforms united under one ecosystem &mdash; informing, inspiring, and connecting professionals across Asia.
+            </p>
+        </div>
+
+        <div class="brands-cards">
+            <!-- Card 1: UpTech -->
+            <div class="brand-card brand-card-blue reveal" style="transition-delay:0.05s">
+                <div class="brand-card-top-accent"></div>
+                <div class="brand-card-logo-box">
+                    <div class="brand-logo-uptech">UpTech</div>
+                </div>
+                <div class="brand-card-body">
+                    <span class="brand-badge badge-blue">MARKETING & MARTECH</span>
+                    <p class="brand-card-desc">
+                        Delivering deep-dive enterprise technology insights, digital transformation coverage, and industry innovations empowering IT leaders and modern tech professionals.
+                    </p>
+                    <div class="brand-audience">
+                        <span class="audience-label">Audience:</span>
+                        <span class="audience-value">Tech Leaders, CTOs, CIOs & Enterprise IT</span>
+                    </div>
+                    <a href="#" class="brand-card-link link-blue">
+                        Visit Website <span class="arrow">&rarr;</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Card 2: MARKETECH -->
+            <div class="brand-card brand-card-orange reveal" style="transition-delay:0.12s">
+                <div class="brand-card-top-accent"></div>
+                <div class="brand-card-logo-box">
+                    <div class="brand-logo-marketech">
+                        <span class="marke">MARKE</span><span class="tech">TECH</span>
+                    </div>
+                </div>
+                <div class="brand-card-body">
+                    <span class="brand-badge badge-orange">MARKETING & MARTECH</span>
+                    <p class="brand-card-desc">
+                        Asia-Pacific's premier platform for modern marketing leaders, showcasing breakthrough campaigns, adtech advancements, and data-driven creative strategies.
+                    </p>
+                    <div class="brand-audience">
+                        <span class="audience-label">Audience:</span>
+                        <span class="audience-value">CMOs, Brand Marketers, MarTech Leaders & Agencies</span>
+                    </div>
+                    <a href="#" class="brand-card-link link-orange">
+                        Visit Website <span class="arrow">&rarr;</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Card 3: HR Forward -->
+            <div class="brand-card brand-card-green reveal" style="transition-delay:0.18s">
+                <div class="brand-card-top-accent"></div>
+                <div class="brand-card-logo-box">
+                    <div class="brand-logo-hrforward">HR Forward</div>
+                </div>
+                <div class="brand-card-body">
+                    <span class="brand-badge badge-green">HR & FUTURE OF WORK</span>
+                    <p class="brand-card-desc">
+                        Empowering people leaders with forward-looking strategies in talent acquisition, workplace culture, leadership excellence, and HR technology innovations.
+                    </p>
+                    <div class="brand-audience">
+                        <span class="audience-label">Audience:</span>
+                        <span class="audience-value">CHROs, People Directors & HR Practitioners</span>
+                    </div>
+                    <a href="#" class="brand-card-link link-green">
+                        Visit Website <span class="arrow">&rarr;</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== OUR ECOSYSTEM ===== -->
+<section id="ecosystem">
+    <div class="section-container">
+        <div class="ecosystem-inner">
+            <div class="reveal">
+                <span class="section-tag">Our Ecosystem</span>
+                <h2 class="section-title">Across Industries,<br>One Ecosystem.</h2>
+                <p class="section-desc">
+                    We bring together technology, marketing, and human resources to create a stronger, more connected professional landscape in Asia.
+                </p>
+                <a href="#who" class="btn btn-outline-white">Discover What We Do &rarr;</a>
+            </div>
+            <div class="ecosystem-pillars reveal" style="transition-delay:0.1s">
+                <div class="pillar-item">
+                    <div class="pillar-hex ph-blue">&#x1F4BB;</div>
+                    <div class="pillar-name">Technology</div>
+                    <div class="pillar-desc">Smarter tools.<br>Bigger possibilities.</div>
+                </div>
+                <div class="pillar-connector"></div>
+                <div class="pillar-item">
+                    <div class="pillar-hex ph-red">&#x1F4E3;</div>
+                    <div class="pillar-name">Marketing</div>
+                    <div class="pillar-desc">Better strategies.<br>Stronger brands.</div>
+                </div>
+                <div class="pillar-connector"></div>
+                <div class="pillar-item">
+                    <div class="pillar-hex ph-gold">&#x1F465;</div>
+                    <div class="pillar-name">Human Resources</div>
+                    <div class="pillar-desc">Healthier people.<br>Brighter workplaces.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== IMPACT ===== -->
+<section id="impact">
+    <div class="section-container">
+        <div class="impact-inner">
+            <div class="reveal">
+                <span class="section-tag">Our Impact</span>
+                <h2 class="section-title">Real Reach.<br>Lasting Impact.</h2>
+                <p class="section-desc">
+                    Through our brands, we reach millions of professionals across Asia, creating value for individuals, businesses, and industries.
+                </p>
+                <a href="#who" class="btn btn-outline-navy">Learn More &rarr;</a>
+            </div>
+            <div class="impact-stats reveal" style="transition-delay:0.1s">
+                <div class="impact-stat">
+                    <div class="impact-stat-icon">&#x1F4F1;</div>
+                    <span class="impact-stat-num" data-target="5">0</span>
+                    <span class="impact-stat-label">Monthly Reach</span>
+                </div>
+                <div class="impact-stat">
+                    <div class="impact-stat-icon">&#x1F91D;</div>
+                    <span class="impact-stat-num" data-target="10000" data-suffix="K+">0</span>
+                    <span class="impact-stat-label">Partner Companies</span>
+                </div>
+                <div class="impact-stat">
+                    <div class="impact-stat-icon">&#x1F4F0;</div>
+                    <span class="impact-stat-num" data-target="3">0</span>
+                    <span class="impact-stat-label">Media Brands</span>
+                </div>
+                <div class="impact-stat">
+                    <div class="impact-stat-icon">&#x1F30F;</div>
+                    <span class="impact-stat-num" data-target="10">0</span>
+                    <span class="impact-stat-label">Countries in Asia</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== FEATURED ===== -->
+<section id="featured">
+    <div class="section-container">
+        <div class="featured-header">
+            <div class="reveal">
+                <span class="section-tag">Featured</span>
+                <h2 class="section-title">What's Happening<br>Across Our Network</h2>
+            </div>
+            <p class="section-desc reveal" style="transition-delay:0.1s;margin-bottom:0;">
+                Get the latest updates, insights, and stories from our brands.
+            </p>
+        </div>
+        <div class="article-cards">
+            <div class="article-card reveal" style="transition-delay:0.05s">
+                <div class="article-thumb at-blue">
+                    <div class="article-brand-tag">UPTECH MEDIA</div>
+                    &#x1F916;
+                </div>
+                <div class="article-body">
+                    <div class="article-date">Apr 20, 2025</div>
+                    <div class="article-title">The Future of AI in Business Technology</div>
+                    <a href="#" class="article-link">Read More &rarr;</a>
+                </div>
+            </div>
+            <div class="article-card reveal" style="transition-delay:0.1s">
+                <div class="article-thumb at-red">
+                    <div class="article-brand-tag">MARKETECH APAC</div>
+                    &#x1F4CA;
+                </div>
+                <div class="article-body">
+                    <div class="article-date">Apr 18, 2025</div>
+                    <div class="article-title">How Brands Can Build Stronger Communities</div>
+                    <a href="#" class="article-link">Read More &rarr;</a>
+                </div>
+            </div>
+            <div class="article-card reveal" style="transition-delay:0.15s">
+                <div class="article-thumb at-green">
+                    <div class="article-brand-tag">HR FORWARD ASIA</div>
+                    &#x1F465;
+                </div>
+                <div class="article-body">
+                    <div class="article-date">Apr 16, 2025</div>
+                    <div class="article-title">Rethinking Employee Experience in 2025</div>
+                    <a href="#" class="article-link">Read More &rarr;</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== CTA ===== -->
+<section id="cta">
+    <div class="cta-deco cta-deco-1"></div>
+    <div class="cta-deco cta-deco-2"></div>
+    <div class="cta-deco cta-deco-3"></div>
+    <div class="cta-deco cta-deco-4"></div>
+    <div class="cta-inner reveal">
+        <h2 class="cta-title">Let's Build What's Next.</h2>
+        <p class="cta-desc">Partner with us, explore our brands, or get in touch with our team.</p>
+        <a href="mailto:hello@wecon.asia" class="cta-btn" id="cta-contact-btn">
+            Get in Touch &rarr;
+        </a>
+    </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+    <div class="footer-inner">
+        <a href="#" class="footer-logo" aria-label="WECON">
+            <div class="footer-logo-icon"><div class="footer-logo-inner"></div></div>
+            <span class="footer-logo-text">WECON</span>
+        </a>
+        <div class="footer-nav">
+            <a href="#hero">Home</a>
+            <a href="#who">About</a>
+            <a href="#brands">Our Brands</a>
+            <a href="#ecosystem">What We Do</a>
+            <a href="#featured">Latest</a>
+            <a href="#cta">Contact</a>
+        </div>
+        <div class="footer-right">
+            <div class="footer-social">
+                <a href="#" class="social-icon" aria-label="LinkedIn">in</a>
+                <a href="#" class="social-icon" aria-label="Facebook">f</a>
+                <a href="#" class="social-icon" aria-label="Twitter">X</a>
+                <a href="#" class="social-icon" aria-label="YouTube">&#x25B6;</a>
+            </div>
+            <div class="footer-copy">&copy; 2025 WECON. All rights reserved.</div>
+        </div>
+    </div>
+</footer>
+
+<script>
+    // Navbar scroll effect: transparent at the very top, rounded background on scroll
+    const navbar = document.getElementById('navbar');
+    const updateNavbarScroll = () => {
+        navbar.classList.toggle('scrolled', window.scrollY > 20);
+    };
+    window.addEventListener('scroll', updateNavbarScroll, { passive: true });
+    updateNavbarScroll();
+
+    // Mobile menu toggle
+    const navToggle = document.getElementById('navToggle');
+    const navLinksList = document.getElementById('navLinks');
+    if (navToggle && navLinksList) {
+        navToggle.addEventListener('click', () => {
+            const isOpen = navToggle.classList.toggle('active');
+            navLinksList.classList.toggle('open', isOpen);
+            navbar.classList.toggle('menu-open', isOpen);
+        });
+        navLinksList.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navToggle.classList.remove('active');
+                navLinksList.classList.remove('open');
+                navbar.classList.remove('menu-open');
+            });
+        });
+    }
+
+    // Bidirectional scroll reveal (fade in AND out)
+    const revealObs = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+            if (e.isIntersecting) {
+                e.target.classList.add('visible');
+            } else {
+                e.target.classList.remove('visible');
+            }
+        });
+    }, { threshold: 0.15, rootMargin: '-60px 0px -60px 0px' });
+    document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+    document.querySelectorAll('#hero .reveal').forEach(el => el.classList.add('visible'));
+
+    // Active nav link on scroll
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-links a');
+    window.addEventListener('scroll', () => {
+        let current = 'hero';
+        sections.forEach(s => {
+            if (window.scrollY >= s.offsetTop - 130) current = s.id;
+        });
+        navLinks.forEach(a => {
+            a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+        });
+    });
+
+    // Counter animation for impact stats
+    function animateCounter(el) {
+        const target = parseInt(el.dataset.target);
+        const suffix = el.dataset.suffix || '+';
+        const isM = target <= 10 && el.parentElement.querySelector('.impact-stat-label').textContent.includes('Reach');
+        const dur = 2000, t0 = performance.now();
+        (function tick(t) {
+            const p = Math.min((t - t0) / dur, 1), e = 1 - Math.pow(1 - p, 4), c = Math.floor(e * target);
+            if (isM) {
+                el.textContent = c + 'M+';
+            } else if (target >= 1000) {
+                el.textContent = (c / 1000).toFixed(0) + 'K+';
+            } else {
+                el.textContent = c + '+';
+            }
+            if (p < 1) requestAnimationFrame(tick);
+        })(t0);
+    }
+    let countersStarted = false;
+    new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting && !countersStarted) {
+            countersStarted = true;
+            document.querySelectorAll('[data-target]').forEach(animateCounter);
+        }
+    }, { threshold: 0.4 }).observe(document.getElementById('impact'));
+
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+        a.addEventListener('click', function(e) {
+            const t = document.querySelector(this.getAttribute('href'));
+            if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth' }); }
+        });
+    });
+</script>
+</body>
+</html>
