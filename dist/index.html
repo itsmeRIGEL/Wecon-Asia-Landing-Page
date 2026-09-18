@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="en">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -8,7 +8,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    @vite(['resources/js/app.js'])
+    <link rel="stylesheet" href="./assets/app-_jj8qUod.css">
+    <script type="module" src="./assets/app-DMsN-rLE.js"></script>
     <style>
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -273,7 +274,7 @@
             background-color: var(--hero-bg);
             background-image: 
                 linear-gradient(135deg, rgba(234, 243, 252, 0.86) 0%, rgba(214, 233, 250, 0.68) 45%, rgba(18, 97, 181, 0.42) 80%, rgba(11, 43, 85, 0.55) 100%),
-                url('{{ asset('images/hero-bg.jpg') }}');
+                url('images/hero-bg.jpg');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -1055,7 +1056,7 @@
         <!-- >>> ATTACH YOUR LOGO HERE: Put your logo on the line below (replace src or paste SVG) <<< -->
         <!-- ========================================================================================= -->
         <a href="#" class="nav-logo" aria-label="WECON Home">
-            <img src="{{ asset('images/logo1.png') }}?v={{ file_exists(public_path('images/logo1.png')) ? filemtime(public_path('images/logo1.png')) : 1 }}" alt="WECON" class="nav-logo-img">
+            <img src="images/logo1.png" alt="WECON" class="nav-logo-img">
         </a>
 
         <!-- Mobile Navigation Toggle -->
@@ -1074,29 +1075,13 @@
             <li><a href="#featured" id="nav-latest">Latest</a></li>
             <li><a href="#cta" id="nav-contact">Contact</a></li>
             <li class="mobile-cta">
-                @if (Route::has('login'))
-                    @auth
-                        <a href="{{ url('/dashboard') }}" class="nav-cta-btn">Dashboard</a>
-                    @else
-                        <a href="#brands" class="nav-cta-btn">Explore Our Brands <span class="cta-arrow">&rarr;</span></a>
-                    @endauth
-                @else
-                    <a href="#brands" class="nav-cta-btn">Explore Our Brands <span class="cta-arrow">&rarr;</span></a>
-                @endif
+                <a href="#brands" class="nav-cta-btn">Explore Our Brands <span class="cta-arrow">&rarr;</span></a>
             </li>
         </ul>
 
         <!-- Desktop CTA Button (Pill Button Matching Reference Design) -->
         <div class="nav-cta-wrapper">
-            @if (Route::has('login'))
-                @auth
-                    <a href="{{ url('/dashboard') }}" class="nav-cta-btn">Dashboard</a>
-                @else
-                    <a href="#brands" class="nav-cta-btn" id="nav-explore-btn">Explore Our Brands <span class="cta-arrow">&rarr;</span></a>
-                @endauth
-            @else
-                <a href="#brands" class="nav-cta-btn" id="nav-explore-btn">Explore Our Brands <span class="cta-arrow">&rarr;</span></a>
-            @endif
+            <a href="#brands" class="nav-cta-btn" id="nav-explore-btn">Explore Our Brands <span class="cta-arrow">&rarr;</span></a>
         </div>
     </div>
 </nav>
@@ -1125,7 +1110,7 @@
             <div class="hero-visual-glow"></div>
             <!-- Main Photo Card -->
             <div class="hero-photo-card">
-                <img src="{{ asset('images/hero-visual.png') }}?v={{ file_exists(public_path('images/hero-visual.png')) ? filemtime(public_path('images/hero-visual.png')) : 1 }}" 
+                <img src="images/hero-visual.png" 
                      alt="WECON Asia - Media Ecosystem" 
                      class="hero-photo-img" 
                      id="hero-visual-photo">
@@ -1145,7 +1130,7 @@
             <div class="who-visual-wrap reveal" style="transition-delay: 0.05s">
                 <div class="who-visual-glow"></div>
                 <div class="who-photo-card">
-                    <img src="{{ asset('images/who-visual.png') }}?v={{ file_exists(public_path('images/who-visual.png')) ? filemtime(public_path('images/who-visual.png')) : 1 }}" 
+                    <img src="images/who-visual.png" 
                          alt="WECON Asia - Who We Are" 
                          class="who-photo-img" 
                          id="who-visual-photo">
