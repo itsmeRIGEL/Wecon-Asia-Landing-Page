@@ -2323,17 +2323,17 @@
             <li><a href="#speakers" id="nav-speakers">Speakers</a></li>
             <li><a href="#insights" id="nav-insights">Insights</a></li>
             <li><a href="#journey" id="nav-careers">Careers</a></li>
-            <li><a href="#newsletter" id="nav-contact">Contact</a></li>
+            <li><a href="#final-cta" id="nav-contact">Contact</a></li>
             
             <li class="mobile-cta">
                 @if (Route::has('login'))
                     @auth
                         <a href="{{ url('/dashboard') }}" class="nav-cta-btn">Dashboard</a>
                     @else
-                        <a href="#journey" class="nav-cta-btn">Explore WECON <span class="cta-arrow">&rarr;</span></a>
+                        <a href="{{ url('/insights') }}" class="nav-cta-btn">Explore WECON <span class="cta-arrow">&rarr;</span></a>
                     @endauth
                 @else
-                    <a href="#journey" class="nav-cta-btn">Explore WECON <span class="cta-arrow">&rarr;</span></a>
+                    <a href="{{ url('/insights') }}" class="nav-cta-btn">Explore WECON <span class="cta-arrow">&rarr;</span></a>
                 @endif
             </li>
         </ul>
@@ -2344,10 +2344,10 @@
                 @auth
                     <a href="{{ url('/dashboard') }}" class="nav-cta-btn">Dashboard</a>
                 @else
-                    <a href="#journey" class="nav-cta-btn" id="nav-explore-btn">Explore WECON <span class="cta-arrow">&rarr;</span></a>
+                    <a href="{{ url('/insights') }}" class="nav-cta-btn" id="nav-explore-btn">Explore WECON <span class="cta-arrow">&rarr;</span></a>
                 @endauth
             @else
-                <a href="#journey" class="nav-cta-btn" id="nav-explore-btn">Explore WECON <span class="cta-arrow">&rarr;</span></a>
+                <a href="{{ url('/insights') }}" class="nav-cta-btn" id="nav-explore-btn">Explore WECON <span class="cta-arrow">&rarr;</span></a>
             @endif
         </div>
     </div>
@@ -2369,7 +2369,7 @@
                 WECON brings together industry leaders, organizations, professionals, and communities through events, awards, media, and meaningful business experiences.
             </p>
             <div class="hero-actions">
-                <a href="#journey" class="btn btn-primary" id="hero-primary-cta">
+                <a href="#insights" class="btn btn-primary" id="hero-primary-cta">
                     Explore WECON <span class="cta-arrow">&rarr;</span>
                 </a>
                 <a href="#events" class="btn btn-outline-navy" id="hero-secondary-cta">
@@ -2584,7 +2584,10 @@
         <div class="events-showcase-grid">
             <!-- Left Side: Content, Description, and CTA Button -->
             <div class="events-showcase-info reveal">
-                <span class="section-tag">Marketech Apac</span>
+                <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                    <span class="section-tag">MARKETECH APAC</span>
+                    <span class="section-tag">UpTech Media</span>
+                </div>
                 <h2 class="section-title">Upcoming Events & Awards</h2>
                 <p class="section-desc">
                     In strategic collaboration with MARKETECH APAC and UPTECH MEDIA, WECON convenes Asia’s benchmark marketing summits, technology conferences, and prestigious industry awards. Explore the 10 premier platforms driving digital transformation, customer engagement, AI innovation, and commercial excellence across the region, connecting visionary enterprise leaders, brand pioneers, and technology innovators.
@@ -2597,13 +2600,8 @@
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
                     </button>
 
-                    <!-- Center: Counter & Indicator Dots -->
+                    <!-- Center: Indicator Dots -->
                     <div class="slideshow-center-nav">
-                        <div class="slideshow-counter">
-                            <span class="counter-curr" id="marketech-current-index">01</span>
-                            <span class="counter-sep">/</span>
-                            <span class="counter-total">10</span>
-                        </div>
                         <div class="slideshow-dots" id="marketech-dots">
                             <button class="slideshow-dot active" data-slide-index="0" aria-label="Slide 1"></button>
                             <button class="slideshow-dot" data-slide-index="1" aria-label="Slide 2"></button>
@@ -2853,7 +2851,7 @@
     <div class="container">
         <div style="display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 2.5rem; flex-wrap: wrap; gap: 1.5rem;">
             <div>
-                <span class="section-tag">Visionary Voices</span>
+                <span class="section-tag">HR Forward Asia</span>
                 <h2 class="section-title" style="margin-bottom: 0.5rem;">Speakers & Industry Leaders</h2>
                 <p class="section-desc" style="margin: 0; max-width: 580px;">
                     Learn from world-class innovators, corporate leaders, and visionary thinkers who take the stage at WECON conferences.
@@ -3403,7 +3401,7 @@
                 Discover unprecedented opportunities to connect with industry leaders, participate in premier events, collaborate across borders, and grow within the WECON ecosystem.
             </p>
             <div class="final-cta-buttons">
-                <a href="#journey" class="btn btn-white" id="final-explore-btn">
+                <a href="#insights" class="btn btn-white" id="final-explore-btn">
                     Explore WECON <span class="cta-arrow">&rarr;</span>
                 </a>
                 <button class="btn btn-outline-white open-partner-modal" data-subject="General Engagement Inquiry">

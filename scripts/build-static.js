@@ -84,9 +84,9 @@ html = html.replace(/src="\{\{\s*asset\(['"]([^'"]+)['"]\)\s*\}\}"/g, 'src="$1"'
 const authRegex = /@if\s*\(Route::has\('login'\)\)[\s\S]*?@endif/g;
 html = html.replace(authRegex, (match) => {
     if (match.includes('id="nav-explore-btn"')) {
-        return '<a href="#journey" class="nav-cta-btn" id="nav-explore-btn">Explore WECON <span class="cta-arrow">&rarr;</span></a>';
+        return '<a href="insights.html" class="nav-cta-btn" id="nav-explore-btn">Explore WECON <span class="cta-arrow">&rarr;</span></a>';
     }
-    return '<a href="#journey" class="nav-cta-btn">Explore WECON <span class="cta-arrow">&rarr;</span></a>';
+    return '<a href="insights.html" class="nav-cta-btn">Explore WECON <span class="cta-arrow">&rarr;</span></a>';
 });
 
 // 6. Replace route and URL helpers
