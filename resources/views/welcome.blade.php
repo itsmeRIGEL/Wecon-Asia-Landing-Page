@@ -94,7 +94,7 @@
         }
 
         .section-padding {
-            padding: 6.5rem 0;
+            padding: 2.5rem 0;
         }
         .section-header {
             max-width: 760px;
@@ -115,6 +115,21 @@
             padding: 0.35rem 0.95rem;
             border-radius: 9999px;
             border: 1px solid rgba(18, 97, 181, 0.16);
+        }
+        .tag-marketech {
+            background: rgba(234, 88, 12, 0.09) !important;
+            color: #EA580C !important;
+            border-color: rgba(234, 88, 12, 0.24) !important;
+        }
+        .tag-uptech {
+            background: rgba(13, 148, 136, 0.09) !important;
+            color: #0D9488 !important;
+            border-color: rgba(13, 148, 136, 0.24) !important;
+        }
+        .tag-hrforward {
+            background: rgba(192, 108, 68, 0.1) !important;
+            color: #C06C44 !important;
+            border-color: rgba(192, 108, 68, 0.25) !important;
         }
         .section-title {
             font-size: clamp(2rem, 3.6vw, 2.75rem);
@@ -246,11 +261,12 @@
         }
         .nav-container {
             width: 100%;
-            padding: 0 1.75rem;
+            padding: 0 2rem;
             display: flex;
             align-items: center;
             justify-content: space-between;
             height: 100%;
+            position: relative;
         }
         .nav-logo {
             display: inline-flex;
@@ -275,6 +291,13 @@
             height: 100%;
             margin: 0;
             padding: 0;
+        }
+        @media (min-width: 901px) {
+            .nav-links {
+                position: absolute;
+                left: 50%;
+                transform: translateX(-50%);
+            }
         }
         .nav-links li {
             display: flex;
@@ -602,41 +625,47 @@
         }
         .about-split {
             display: grid;
-            grid-template-columns: 1.15fr 1fr;
-            gap: 4.5rem;
-            align-items: center;
+            grid-template-columns: 1fr 1.15fr;
+            gap: 3.5rem;
+            align-items: stretch;
+        }
+        .about-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
         .about-content .section-tag {
             background: rgba(192, 57, 43, 0.08);
             color: var(--red);
             border-color: rgba(192, 57, 43, 0.18);
+            align-self: flex-start;
         }
         .about-title {
             font-size: clamp(2rem, 3.4vw, 2.75rem);
             font-weight: 800;
             line-height: 1.18;
             color: var(--navy);
-            margin-bottom: 1.25rem;
+            margin-bottom: 1.15rem;
         }
         .about-title .accent-red {
             color: var(--red);
         }
         .about-text {
-            font-size: 1.05rem;
+            font-size: 1.02rem;
             color: var(--text-body);
-            line-height: 1.75;
-            margin-bottom: 1.5rem;
+            line-height: 1.7;
+            margin-bottom: 1.25rem;
         }
         .about-pill-matrix {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 1rem;
-            margin: 2rem 0 2.25rem;
+            gap: 0.85rem;
+            margin: 1.25rem 0 1.75rem;
         }
         .about-pill {
             background: var(--section-alt);
             border: 1px solid var(--border);
-            padding: 0.9rem 1.1rem;
+            padding: 0.85rem 0.95rem;
             border-radius: 12px;
             text-align: center;
             transition: all 0.25s ease;
@@ -649,108 +678,190 @@
         }
         .about-pill-num {
             display: block;
-            font-size: 1.5rem;
+            font-size: 1.45rem;
             font-weight: 800;
             color: var(--navy);
         }
         .about-pill-label {
-            font-size: 0.76rem;
+            font-size: 0.74rem;
             font-weight: 600;
             color: var(--text-muted);
             text-transform: uppercase;
             letter-spacing: 0.05em;
         }
+        .about-content-cta {
+            align-self: flex-start;
+        }
 
-        /* Ecosystem Interconnection Graphic */
-        .ecosystem-wheel {
-            position: relative;
+        /* Who We Are 3 Branches Showcase (Expanded & Prominent Logo Layout) */
+        .about-branches-showcase {
             background: linear-gradient(135deg, #F8FAFC 0%, #EEF4FA 100%);
             border: 1px solid var(--border);
             border-radius: 28px;
-            padding: 3rem 2.5rem;
-            box-shadow: var(--shadow-md);
-            overflow: hidden;
-        }
-        .wheel-center {
-            width: 110px;
-            height: 110px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--navy) 0%, var(--blue) 100%);
-            color: #FFFFFF;
+            padding: 2.25rem 2.5rem 2rem;
+            box-shadow: 0 16px 40px -10px rgba(11, 43, 85, 0.08);
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
-            margin: 0 auto;
-            box-shadow: 0 10px 30px rgba(11, 43, 85, 0.3);
-            position: relative;
-            z-index: 3;
             text-align: center;
-        }
-        .wheel-center-brand {
-            font-size: 1.15rem;
-            font-weight: 900;
-            letter-spacing: 0.06em;
-        }
-        .wheel-center-sub {
-            font-size: 0.65rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            opacity: 0.85;
-        }
-        .wheel-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1.1rem;
-            margin-top: 2rem;
             position: relative;
-            z-index: 2;
+            height: 100%;
+            box-sizing: border-box;
+            justify-content: space-between;
         }
-        .wheel-node {
-            background: #FFFFFF;
-            border: 1px solid var(--border);
-            border-radius: 14px;
-            padding: 1.15rem 1.25rem;
-            display: flex;
-            align-items: center;
-            gap: 0.9rem;
-            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-            cursor: pointer;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
-            text-decoration: none;
-        }
-        .wheel-node:hover {
-            border-color: var(--blue);
-            transform: translateY(-4px);
-            box-shadow: var(--shadow-md);
-            background: #FFFFFF;
-        }
-        .wheel-node-icon {
-            width: 42px;
-            height: 42px;
-            border-radius: 10px;
+        .branches-slideshow-container {
+            width: 100%;
+            position: relative;
+            flex: 1;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.2rem;
+            margin: 0.5rem 0;
+        }
+        .branch-slide {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            opacity: 0;
+            transition: opacity 0.4s ease, transform 0.4s ease;
+            transform: translateY(6px);
+        }
+        .branch-slide.active {
+            display: flex;
+            opacity: 1;
+            transform: translateY(0);
+        }
+        /* Forward / Backward Navigation Arrows (Centered Below) */
+        .branch-controls-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1.25rem;
+            margin-top: 1.25rem;
+            width: 100%;
+        }
+        .branch-nav-arrow {
+            position: relative;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #FFFFFF;
+            border: 1.5px solid var(--border);
+            color: var(--navy);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 5;
+            transition: all 0.25s ease;
+            box-shadow: var(--shadow-sm);
+            font-size: 1.05rem;
             flex-shrink: 0;
         }
-        .wn-media { background: #EBF4FE; color: var(--blue); }
-        .wn-events { background: #FEF3C7; color: #B45309; }
-        .wn-awards { background: #FEE2E2; color: var(--red); }
-        .wn-community { background: #DCFCE7; color: #15803D; }
-        .wn-business { background: #F3E8FF; color: #7E22CE; }
-        .wn-industry { background: #E0E7FF; color: #4338CA; }
-        .wheel-node-title {
-            font-size: 0.94rem;
-            font-weight: 700;
-            color: var(--navy);
-            margin-bottom: 0.15rem;
+        .branch-nav-arrow:hover {
+            background: var(--navy);
+            color: #FFFFFF;
+            border-color: var(--navy);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px rgba(11, 43, 85, 0.18);
         }
-        .wheel-node-desc {
-            font-size: 0.78rem;
-            color: var(--text-muted);
-            line-height: 1.4;
+
+        /* Prominent BRAND NAME Logo (Enlarged) */
+        .branch-slide-brand {
+            width: 100%;
+            background: transparent;
+            border: none;
+            padding: 0.25rem 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+            height: 110px;
+            box-sizing: border-box;
+        }
+        .branch-slide-logo {
+            max-height: 85px;
+            max-width: 300px;
+            object-fit: contain;
+            display: block;
+            filter: drop-shadow(0 6px 16px rgba(11, 43, 85, 0.08));
+            transition: transform 0.35s ease;
+        }
+        .branch-slide:hover .branch-slide-logo {
+            transform: scale(1.05);
+        }
+        /* Middle Excerpt Text */
+        .branch-slide-excerpt-box {
+            width: 90%;
+            background: transparent;
+            border: none;
+            padding: 0;
+            margin-bottom: 1.5rem;
+            min-height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-sizing: border-box;
+        }
+        .branch-slide-excerpt {
+            font-size: 0.98rem;
+            color: var(--text-body);
+            line-height: 1.65;
+            margin: 0;
+        }
+        /* Bottom About Us Button */
+        .branch-slide-action {
+            margin-bottom: 0.25rem;
+        }
+        .branch-about-link {
+            font-size: 0.9rem;
+            font-weight: 700;
+            padding: 0.6rem 1.75rem;
+            border-radius: 9999px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: #FFFFFF;
+            border: 1.5px solid var(--navy);
+            color: var(--navy);
+            box-shadow: 0 4px 14px rgba(11, 43, 85, 0.08);
+            transition: all 0.25s ease;
+        }
+        .branch-about-link:hover {
+            background: var(--navy);
+            color: #FFFFFF;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(11, 43, 85, 0.18);
+        }
+        /* 3 Pagination Dots Navigation */
+        .branch-dots-nav {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.65rem;
+            margin: 0;
+            flex-shrink: 0;
+        }
+        .branch-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #CBD5E1;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            padding: 0;
+        }
+        .branch-dot:hover {
+            background: #94A3B8;
+        }
+        .branch-dot.active {
+            background: var(--navy);
+            width: 32px;
+            border-radius: 9999px;
         }
 
         /* ===== SECTION 3: WECON ECOSYSTEM CARDS ===== */
@@ -868,16 +979,19 @@
             transform: translateX(5px);
         }
 
-        /* ===== SECTION 4: UPCOMING EVENTS & AWARDS (2-COLUMN SHOWCASE & SLIDESHOW) ===== */
+        /* ===== SECTION 4: UPCOMING EVENTS & AWARDS (MARKETECH & UPTECH BRANDED) ===== */
         #events {
-            background: #FFFFFF;
+            background: 
+                radial-gradient(ellipse 70% 55% at 5% 20%, rgba(234, 88, 12, 0.16) 0%, rgba(234, 88, 12, 0.03) 55%, transparent 75%),
+                radial-gradient(ellipse 70% 55% at 95% 75%, rgba(13, 148, 136, 0.17) 0%, rgba(13, 148, 136, 0.03) 55%, transparent 75%),
+                linear-gradient(135deg, #FFF4EC 0%, #FAF8F6 40%, #E8F7F4 100%);
             position: relative;
             overflow: hidden;
         }
         .events-showcase-grid {
             display: grid;
-            grid-template-columns: 1fr 1.35fr;
-            gap: 4rem;
+            grid-template-columns: 1fr 1fr;
+            gap: 3.5rem;
             align-items: center;
         }
         .events-showcase-info {
@@ -885,9 +999,6 @@
             flex-direction: column;
         }
         .events-showcase-info .section-tag {
-            background: rgba(18, 97, 181, 0.08);
-            color: var(--blue);
-            border-color: rgba(18, 97, 181, 0.2);
             margin-bottom: 1rem;
             align-self: flex-start;
         }
@@ -902,15 +1013,15 @@
             font-size: 1.08rem;
             color: var(--text-body);
             line-height: 1.82;
-            margin-bottom: 2.75rem;
+            margin-bottom: 2.25rem;
         }
         .events-slideshow-nav {
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 1.5rem;
-            padding-top: 1.5rem;
-            border-top: 1px solid var(--border);
+            padding-top: 1.25rem;
+            border-top: 1px solid rgba(11, 43, 85, 0.1);
             margin-bottom: 0;
             width: 100%;
         }
@@ -934,11 +1045,11 @@
             box-shadow: var(--shadow-sm);
         }
         .slideshow-arrow-btn:hover {
-            background: var(--navy);
-            color: #FFFFFF;
-            border-color: var(--navy);
+            background: #FFFFFF;
+            color: #EA580C;
+            border-color: #EA580C;
             transform: translateY(-2px);
-            box-shadow: var(--shadow-md);
+            box-shadow: 0 6px 18px rgba(234, 88, 12, 0.18);
         }
         .slideshow-counter {
             font-family: inherit;
@@ -968,8 +1079,8 @@
             padding: 0;
         }
         .slideshow-dot.active {
-            width: 24px;
-            background: var(--blue);
+            width: 26px;
+            background: #0B2B55;
         }
 
         /* Slideshow Showcase Container (Right Column) */
@@ -977,7 +1088,8 @@
             position: relative;
             background: #FFFFFF;
             border-radius: 24px;
-            border: 1px solid var(--border);
+            border: 1px solid rgba(226, 232, 240, 0.9);
+            box-shadow: 0 16px 45px -10px rgba(11, 43, 85, 0.08);
             box-shadow: var(--shadow-lg);
             overflow: hidden;
         }
@@ -996,7 +1108,7 @@
             min-width: 100%;
             width: 100%;
             box-sizing: border-box;
-            padding: 2.25rem;
+            padding: 1.75rem 2rem;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -1004,7 +1116,8 @@
             color: inherit;
         }
         .slide-brand-frame {
-            background: #EDF2F7;
+            background: transparent;
+            border: none;
             border-radius: 18px;
             overflow: hidden;
             display: flex;
@@ -1012,26 +1125,26 @@
             justify-content: center;
             width: 100%;
             aspect-ratio: 2.04 / 1;
-            margin-bottom: 1.75rem;
+            margin-bottom: 1.25rem;
             position: relative;
-            box-shadow: 0 4px 16px rgba(11, 43, 85, 0.06);
-            border: 1px solid rgba(18, 97, 181, 0.12);
+            box-shadow: none;
             transition: all 0.35s ease;
         }
         .marketech-slide:hover .slide-brand-frame {
-            border-color: rgba(18, 97, 181, 0.3);
-            box-shadow: 0 8px 24px rgba(11, 43, 85, 0.12);
-            transform: translateY(-2px);
+            border: none;
+            box-shadow: none;
+            transform: none;
         }
         .slide-brand-img {
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            object-fit: contain;
             display: block;
+            filter: drop-shadow(0 4px 14px rgba(11, 43, 85, 0.08));
             transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
         .marketech-slide:hover .slide-brand-img {
-            transform: scale(1.03);
+            transform: scale(1.04);
         }
         .slide-meta-row {
             display: flex;
@@ -1039,7 +1152,7 @@
             justify-content: space-between;
             gap: 0.75rem;
             flex-wrap: wrap;
-            margin-bottom: 0.85rem;
+            margin-bottom: 0.75rem;
         }
         .slide-badge {
             font-size: 0.72rem;
@@ -1067,34 +1180,34 @@
             letter-spacing: 0.06em;
         }
         .slide-title {
-            font-size: 1.45rem;
+            font-size: 1.35rem;
             font-weight: 800;
             color: var(--navy);
             line-height: 1.28;
-            margin-bottom: 0.45rem;
+            margin-bottom: 0.35rem;
             transition: color 0.2s ease;
         }
         .marketech-slide:hover .slide-title {
             color: var(--blue);
         }
         .slide-subtitle {
-            font-size: 0.88rem;
+            font-size: 0.86rem;
             font-weight: 600;
             color: var(--blue);
-            margin-bottom: 0.85rem;
+            margin-bottom: 0.75rem;
         }
         .slide-desc {
-            font-size: 0.92rem;
+            font-size: 0.90rem;
             color: var(--text-body);
-            line-height: 1.65;
-            margin-bottom: 1.5rem;
+            line-height: 1.62;
+            margin-bottom: 1.25rem;
             flex-grow: 1;
         }
         .slide-footer {
             display: flex;
             align-items: center;
             justify-content: center;
-            padding-top: 1.25rem;
+            padding-top: 1rem;
             border-top: 1px solid var(--border);
             font-size: 0.88rem;
             text-align: center;
@@ -1376,26 +1489,36 @@
             color: rgba(255, 255, 255, 0.7);
         }
 
-        /* ===== SECTION 7: SPEAKERS / INDUSTRY LEADERS ===== */
+        /* ===== SECTION 7: SPEAKERS / INDUSTRY LEADERS (HR FORWARD ASIA BRANDED) ===== */
         #speakers {
-            background: var(--section-alt);
+            background: linear-gradient(180deg, #FAF6F3 0%, #F8FAFC 100%);
+        }
+        #speakers .section-tag {
+            background: rgba(192, 108, 68, 0.1);
+            color: #C06C44;
+            border-color: rgba(192, 108, 68, 0.25);
         }
         .speakers-track {
-            display: flex;
-            gap: 1.75rem;
-            overflow-x: auto;
-            padding-bottom: 1.5rem;
-            scroll-behavior: smooth;
-            scrollbar-width: thin;
-            scrollbar-color: rgba(18, 97, 181, 0.25) transparent;
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 1.25rem;
         }
-        .speakers-track::-webkit-scrollbar { height: 6px; }
-        .speakers-track::-webkit-scrollbar-thumb {
-            background: rgba(18, 97, 181, 0.3);
-            border-radius: 9999px;
+        @media (max-width: 1200px) {
+            .speakers-track {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        @media (max-width: 768px) {
+            .speakers-track {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        @media (max-width: 500px) {
+            .speakers-track {
+                grid-template-columns: 1fr;
+            }
         }
         .speaker-card {
-            flex: 0 0 295px;
             background: #FFFFFF;
             border-radius: 20px;
             border: 1px solid var(--border);
@@ -1405,14 +1528,15 @@
             flex-direction: column;
             transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
             position: relative;
+            width: 100%;
         }
         .speaker-card:hover {
             transform: translateY(-8px);
-            box-shadow: var(--shadow-lg);
-            border-color: rgba(18, 97, 181, 0.35);
+            box-shadow: 0 14px 36px rgba(192, 108, 68, 0.14);
+            border-color: rgba(192, 108, 68, 0.45);
         }
         .speaker-photo-wrap {
-            height: 260px;
+            height: 200px;
             position: relative;
             background: #E2E8F0;
             overflow: hidden;
@@ -1430,7 +1554,7 @@
             position: absolute;
             bottom: 12px;
             left: 12px;
-            background: rgba(11, 43, 85, 0.9);
+            background: rgba(192, 108, 68, 0.92);
             color: #FFFFFF;
             backdrop-filter: blur(8px);
             padding: 0.3rem 0.75rem;
@@ -1450,11 +1574,15 @@
             font-weight: 800;
             color: var(--navy);
             margin-bottom: 0.25rem;
+            transition: color 0.25s ease;
+        }
+        .speaker-card:hover .speaker-name a {
+            color: #C06C44 !important;
         }
         .speaker-title {
             font-size: 0.84rem;
             font-weight: 600;
-            color: var(--blue);
+            color: #C06C44;
             margin-bottom: 0.15rem;
         }
         .speaker-company {
@@ -1485,9 +1613,15 @@
             font-weight: 600;
         }
 
-        /* ===== SECTION 8: INSIGHTS & MEDIA ===== */
+        /* ===== SECTION 8: INSIGHTS & MEDIA (TRI-BRAND AMBIENT BACKGROUND) ===== */
         #insights {
-            background: #FFFFFF;
+            background: 
+                radial-gradient(ellipse 70% 55% at 8% 25%, rgba(234, 88, 12, 0.16) 0%, rgba(234, 88, 12, 0.03) 55%, transparent 75%),
+                radial-gradient(ellipse 70% 55% at 50% 80%, rgba(13, 148, 136, 0.16) 0%, rgba(13, 148, 136, 0.03) 55%, transparent 75%),
+                radial-gradient(ellipse 70% 55% at 92% 25%, rgba(192, 108, 68, 0.16) 0%, rgba(192, 108, 68, 0.03) 55%, transparent 75%),
+                linear-gradient(135deg, #FFF4EC 0%, #FAF8F6 35%, #E8F7F4 70%, #FAF2EC 100%);
+            position: relative;
+            overflow: hidden;
         }
         .insights-filters {
             display: flex;
@@ -1843,8 +1977,8 @@
             gap: 0.65rem;
         }
 
-        /* ===== SECTION 12: NEWSLETTER & COMMUNITY ===== */
-        #newsletter {
+        /* ===== SECTION 12: NEWSLETTER & COMMUNITY (STAY CONNECTED) ===== */
+        #newsletter, #stay-connected {
             background: var(--section-alt);
         }
         .newsletter-box {
@@ -2226,7 +2360,7 @@
                 width: calc(100% - 1.5rem);
                 height: 62px;
             }
-            .nav-container { padding: 0 1.25rem; }
+            .nav-container { padding: 0 1.25rem; justify-content: space-between; }
             .nav-toggle { display: flex; }
             .nav-links {
                 position: fixed;
@@ -2316,39 +2450,22 @@
             <span></span>
         </button>
 
-        <!-- Navigation Links -->
+        <!-- Navigation Links (Centered) -->
         <ul class="nav-links" id="navLinks">
             <li><a href="#about" id="nav-about">About</a></li>
-            <li><a href="#events" id="nav-events">Events</a></li>
-            <li><a href="#speakers" id="nav-speakers">Speakers</a></li>
-            <li><a href="#insights" id="nav-insights">Insights</a></li>
-            <li><a href="#journey" id="nav-careers">Careers</a></li>
+            <li><a href="#events" id="nav-events">Upcoming</a></li>
+            <li><a href="#speakers" id="nav-speakers">HR Forward</a></li>
+            <li><a href="#insights" id="nav-insights">Articles</a></li>
+            <li><a href="#journey" id="nav-careers">Guide</a></li>
             <li><a href="#final-cta" id="nav-contact">Contact</a></li>
-            
             <li class="mobile-cta">
-                @if (Route::has('login'))
-                    @auth
-                        <a href="{{ url('/dashboard') }}" class="nav-cta-btn">Dashboard</a>
-                    @else
-                        <a href="{{ url('/insights') }}" class="nav-cta-btn">Explore WECON <span class="cta-arrow">&rarr;</span></a>
-                    @endauth
-                @else
-                    <a href="{{ url('/insights') }}" class="nav-cta-btn">Explore WECON <span class="cta-arrow">&rarr;</span></a>
-                @endif
+                <a href="#stay-connected" class="nav-cta-btn">Stay Connected <span class="cta-arrow">&rarr;</span></a>
             </li>
         </ul>
 
-        <!-- Desktop Persistent CTA Button -->
+        <!-- Right Side Persistent Button: Stay Connected -->
         <div class="nav-cta-wrapper">
-            @if (Route::has('login'))
-                @auth
-                    <a href="{{ url('/dashboard') }}" class="nav-cta-btn">Dashboard</a>
-                @else
-                    <a href="{{ url('/insights') }}" class="nav-cta-btn" id="nav-explore-btn">Explore WECON <span class="cta-arrow">&rarr;</span></a>
-                @endauth
-            @else
-                <a href="{{ url('/insights') }}" class="nav-cta-btn" id="nav-explore-btn">Explore WECON <span class="cta-arrow">&rarr;</span></a>
-            @endif
+            <a href="#stay-connected" class="nav-cta-btn" id="nav-connected-btn">Stay Connected <span class="cta-arrow">&rarr;</span></a>
         </div>
     </div>
 </nav>
@@ -2370,7 +2487,7 @@
             </p>
             <div class="hero-actions">
                 <a href="#insights" class="btn btn-primary" id="hero-primary-cta">
-                    Explore WECON <span class="cta-arrow">&rarr;</span>
+                    See Articles <span class="cta-arrow">&rarr;</span>
                 </a>
                 <a href="#events" class="btn btn-outline-navy" id="hero-secondary-cta">
                     View Upcoming Events
@@ -2382,10 +2499,10 @@
                 <span class="hero-trust-label">Our Core Brands:</span>
                 <div class="hero-trust-badges">
                     <span class="hero-trust-item">
-                        <span class="trust-dot" style="background: var(--blue);"></span> UpTech
+                       <span class="trust-dot" style="background: var(--orange);"></span> MARKETECH APAC
                     </span>
                     <span class="hero-trust-item">
-                        <span class="trust-dot" style="background: var(--orange);"></span> MARKETECH APAC
+                        <span class="trust-dot" style="background: var(--blue);"></span> UpTech
                     </span>
                     <span class="hero-trust-item">
                         <span class="trust-dot" style="background: var(--green);"></span> HR Forward
@@ -2401,15 +2518,15 @@
             <!-- Floating Interactive Context Badges -->
             <a href="#events" class="hero-floating-badge badge-pos-1">
                 <span class="trust-dot" style="background: var(--blue);"></span>
-                Upcoming Forums & Conferences
+                Upcoming Events and Awards
             </a>
             <a href="#speakers" class="hero-floating-badge badge-pos-2">
                 <span class="trust-dot" style="background: var(--gold);"></span>
-                Keynote Speakers & Leaders
+                Keynote Featured & Leadership
             </a>
             <a href="#insights" class="hero-floating-badge badge-pos-3">
                 <span class="trust-dot" style="background: var(--green);"></span>
-                Editorial Insights & Reports
+                News & Insights
             </a>
 
             <!-- Central Hero Graphic -->
@@ -2443,80 +2560,75 @@
                     <span class="accent-red">A Connected Business Ecosystem.</span>
                 </h2>
                 <p class="about-text">
-                    WECON is a forward-thinking business media, events, and industry intelligence ecosystem that connects enterprise leaders, innovators, and professionals across Asia. Through premier conferences, prestigious awards, insightful editorial coverage, and curated networking, we shape industries and catalyze growth.
+                    WECON Asia Media Group, Inc. is a forward-thinking business media, events, and industry intelligence ecosystem that connects enterprise leaders, innovators, and professionals across Asia. Through premier conferences, prestigious awards, insightful editorial coverage, and curated networking, we shape industries and catalyze growth.
                 </p>
 
-                <!-- Impact Snapshot Matrix -->
-                <div class="about-pill-matrix">
-                    <div class="about-pill">
-                        <span class="about-pill-num" data-target="5" data-suffix="M+">5M+</span>
-                        <span class="about-pill-label">Monthly Reach</span>
-                    </div>
-                    <div class="about-pill">
-                        <span class="about-pill-num" data-target="10000" data-suffix="K+">10K+</span>
-                        <span class="about-pill-label">Enterprise Partners</span>
-                    </div>
-                    <div class="about-pill">
-                        <span class="about-pill-num" data-target="10" data-suffix="+">10+</span>
-                        <span class="about-pill-label">Asian Markets</span>
-                    </div>
-                </div>
-
-                <a href="#ecosystem" class="btn btn-outline-navy">
-                    Learn More About Our Work <span class="cta-arrow">&rarr;</span>
-                </a>
             </div>
 
-            <!-- Right Interactive Graphic Representing WECON's Ecosystem -->
-            <div class="ecosystem-wheel reveal" style="transition-delay: 0.15s">
-                <div class="wheel-center">
-                    <span class="wheel-center-brand">WECON</span>
-                    <span class="wheel-center-sub">Ecosystem</span>
+            <!-- Right Showcase Displaying WECON's 3 Media Branches (Clean Layout with Center Navigation Controls) -->
+            <div class="about-branches-showcase reveal" style="transition-delay: 0.15s">
+                <div class="branches-slideshow-container">
+                    <!-- Branch Slide 1: MARKETECH APAC -->
+                    <div class="branch-slide active" data-index="0">
+                        <div class="branch-slide-brand">
+                            <img src="{{ asset('images/marketech-logo.png') }}" alt="MARKETECH APAC" class="branch-slide-logo" />
+                        </div>
+                        <div class="branch-slide-excerpt-box">
+                            <p class="branch-slide-excerpt">
+                                Asia's premier marketing technology intelligence publication reporting on digital advertising, MarTech innovation, and brand strategy across APAC.
+                            </p>
+                        </div>
+                        <div class="branch-slide-action">
+                            <a href="https://marketech-apac.com/about-marketech-apac/" target="_blank" rel="noopener noreferrer" class="btn btn-outline-navy branch-about-link">
+                                Visit Us &rarr;
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Branch Slide 2: UpTech Media -->
+                    <div class="branch-slide" data-index="1">
+                        <div class="branch-slide-brand">
+                            <img src="{{ asset('images/uptech-logo.png') }}" alt="UpTech Media" class="branch-slide-logo" />
+                        </div>
+                        <div class="branch-slide-excerpt-box">
+                            <p class="branch-slide-excerpt">
+                                Always moving upwards — verified technology media covering enterprise AI, data infrastructure, cybersecurity, fintech, and digital transformation.
+                            </p>
+                        </div>
+                        <div class="branch-slide-action">
+                            <a href="https://uptech-media.com/about-us/" target="_blank" rel="noopener noreferrer" class="btn btn-outline-navy branch-about-link">
+                                Visit Us &rarr;
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Branch Slide 3: HR Forward Asia -->
+                    <div class="branch-slide" data-index="2">
+                        <div class="branch-slide-brand">
+                            <img src="{{ asset('images/hrforward-logo.png') }}" alt="HR Forward Asia" class="branch-slide-logo" />
+                        </div>
+                        <div class="branch-slide-excerpt-box">
+                            <p class="branch-slide-excerpt">
+                                Pan-Asian human capital publication dedicated to executive leadership, talent development, employee experience, and HR technology.
+                            </p>
+                        </div>
+                        <div class="branch-slide-action">
+                            <a href="https://hrforwardasia.com/about-us/" target="_blank" rel="noopener noreferrer" class="btn btn-outline-navy branch-about-link">
+                                Visit Us &rarr;
+                            </a>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="wheel-grid">
-                    <a href="#insights" class="wheel-node">
-                        <div class="wheel-node-icon wn-media">&#x1F4F0;</div>
-                        <div>
-                            <div class="wheel-node-title">Media</div>
-                            <div class="wheel-node-desc">Articles, podcasts, news</div>
-                        </div>
-                    </a>
-                    <a href="#events" class="wheel-node">
-                        <div class="wheel-node-icon wn-events">&#x1F3A4;</div>
-                        <div>
-                            <div class="wheel-node-title">Events</div>
-                            <div class="wheel-node-desc">Conferences & forums</div>
-                        </div>
-                    </a>
-                    <a href="#journey" class="wheel-node">
-                        <div class="wheel-node-icon wn-awards">&#x1F3C6;</div>
-                        <div>
-                            <div class="wheel-node-title">Awards</div>
-                            <div class="wheel-node-desc">Honoring excellence</div>
-                        </div>
-                    </a>
-                    <a href="#journey" class="wheel-node">
-                        <div class="wheel-node-icon wn-community">&#x1F91D;</div>
-                        <div>
-                            <div class="wheel-node-title">Community</div>
-                            <div class="wheel-node-desc">Executive networks</div>
-                        </div>
-                    </a>
-                    <a href="#journey" class="wheel-node">
-                        <div class="wheel-node-icon wn-business">&#x1F4CA;</div>
-                        <div>
-                            <div class="wheel-node-title">Business</div>
-                            <div class="wheel-node-desc">Growth initiatives</div>
-                        </div>
-                    </a>
-                    <a href="#journey" class="wheel-node">
-                        <div class="wheel-node-icon wn-industry">&#x1F310;</div>
-                        <div>
-                            <div class="wheel-node-title">Industry</div>
-                            <div class="wheel-node-desc">Cross-sector intelligence</div>
-                        </div>
-                    </a>
+                <!-- Center Navigation: Prev Arrow, 3 Dots, Next Arrow -->
+                <div class="branch-controls-wrapper">
+                    <button class="branch-nav-arrow branch-nav-prev" id="branch-prev-btn" aria-label="Previous Branch">&#x2190;</button>
+                    <div class="branch-dots-nav">
+                        <button class="branch-dot active" data-slide="0" aria-label="MARKETECH APAC"></button>
+                        <button class="branch-dot" data-slide="1" aria-label="UpTech Media"></button>
+                        <button class="branch-dot" data-slide="2" aria-label="HR Forward Asia"></button>
+                    </div>
+                    <button class="branch-nav-arrow branch-nav-next" id="branch-next-btn" aria-label="Next Branch">&#x2192;</button>
                 </div>
             </div>
         </div>
@@ -2585,8 +2697,8 @@
             <!-- Left Side: Content, Description, and CTA Button -->
             <div class="events-showcase-info reveal">
                 <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
-                    <span class="section-tag">MARKETECH APAC</span>
-                    <span class="section-tag">UpTech Media</span>
+                    <span class="section-tag tag-marketech">MARKETECH APAC</span>
+                    <span class="section-tag tag-uptech">UpTech Media</span>
                 </div>
                 <h2 class="section-title">Upcoming Events & Awards</h2>
                 <p class="section-desc">
@@ -2849,129 +2961,109 @@
 <!-- ===== SECTION 7: SPEAKERS / INDUSTRY LEADERS ===== -->
 <section id="speakers" class="section-padding">
     <div class="container">
-        <div style="display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 2.5rem; flex-wrap: wrap; gap: 1.5rem;">
-            <div>
-                <span class="section-tag">HR Forward Asia</span>
-                <h2 class="section-title" style="margin-bottom: 0.5rem;">Speakers & Industry Leaders</h2>
-                <p class="section-desc" style="margin: 0; max-width: 580px;">
-                    Learn from world-class innovators, corporate leaders, and visionary thinkers who take the stage at WECON conferences.
-                </p>
-            </div>
-            <div style="display: flex; align-items: center; gap: 1rem;">
-                <div class="carousel-controls" style="margin-bottom: 0;">
-                    <button class="carousel-btn" id="speakers-prev-btn" aria-label="Previous speakers">&#x2190;</button>
-                    <button class="carousel-btn" id="speakers-next-btn" aria-label="Next speakers">&#x2192;</button>
-                </div>
-                <button class="btn btn-outline-navy btn-sm open-speaker-modal">Apply to Speak</button>
-            </div>
+        <div style="margin-bottom: 2.5rem;">
+            <span class="section-tag">HR Forward Asia</span>
+            <h2 class="section-title" style="margin-bottom: 0.5rem;">Features & Leadership</h2>
+            <p class="section-desc" style="margin: 0; max-width: 620px;">
+                In-depth executive interviews, workforce perspectives, and leadership features examining how organisations navigate change and the future of work across Asia.
+            </p>
         </div>
 
         <div class="speakers-track" id="speakers-track">
-            <!-- Speaker 1 -->
-            <div class="speaker-card">
-                <div class="speaker-photo-wrap" style="background: linear-gradient(135deg, #1261B5, #0B2B55); display: flex; align-items: center; justify-content: center;">
-                    <div style="font-size: 5rem; color: #FFFFFF;">&#x1F9D1;&#x200D;&#x1F4BB;</div>
-                    <span class="speaker-industry-tag">Enterprise Tech</span>
+            <!-- Article 1 -->
+            <div class="speaker-card" id="speaker-card-0">
+                <div class="speaker-photo-wrap">
+                    <img class="speaker-photo" id="speaker-img-0" src="https://hrforwardasia.com/wp-content/uploads/2026/09/Kirk-AirAsia.webp" alt="Leader Feature Image" />
+                    <span class="speaker-industry-tag">HR Forward &bull; Leadership</span>
                 </div>
                 <div class="speaker-body">
-                    <h3 class="speaker-name">Dr. Elena Vance</h3>
-                    <div class="speaker-title">Chief Technology Officer</div>
-                    <div class="speaker-company">Pan-Asia FinTech Systems</div>
-                    <div class="speaker-bio-hover">
-                        Former cloud research director leading autonomous distributed banking systems across 8 Asian economies.
-                        <div class="speaker-topics">
-                            <span class="speaker-topic-badge">Sovereign Cloud</span>
-                            <span class="speaker-topic-badge">Agentic AI</span>
-                        </div>
+                    <h3 class="speaker-name" style="font-size: 1rem; line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; margin-bottom: 0.4rem;">
+                        <a id="speaker-link-0" href="https://hrforwardasia.com/judgment-over-policy-kirk-patrick-alimaza-on-speaking-up-staying-human-and-leading-with-trust-over-likeability/" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: none;">
+                            Judgment over policy: Kirk Patrick Alimaza on speaking up, staying human and leading with trust over likeability
+                        </a>
+                    </h3>
+                    <div class="speaker-title" id="speaker-date-0" style="margin-bottom: 0.6rem; font-size: 0.8rem; font-weight: 700;">Sep 21, 2026</div>
+                    <div class="speaker-bio-hover" id="speaker-excerpt-0" style="font-size: 0.82rem; color: var(--text-muted); line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; border-top: 1px solid var(--border-light); padding-top: 0.75rem;">
+                        Early in his HR career, Kirk Patrick Alimaza, Country Head, People at AirAsia, believed great HR meant enforceability...
                     </div>
                 </div>
             </div>
 
-            <!-- Speaker 2 -->
-            <div class="speaker-card">
-                <div class="speaker-photo-wrap" style="background: linear-gradient(135deg, #EA580C, #9A3412); display: flex; align-items: center; justify-content: center;">
-                    <div style="font-size: 5rem; color: #FFFFFF;">&#x1F469;&#x200D;&#x1F4BC;</div>
-                    <span class="speaker-industry-tag">Marketing</span>
+            <!-- Article 2 -->
+            <div class="speaker-card" id="speaker-card-1">
+                <div class="speaker-photo-wrap">
+                    <img class="speaker-photo" id="speaker-img-1" src="https://hrforwardasia.com/wp-content/uploads/2026/09/Article-launch.webp" alt="Leader Feature Image" />
+                    <span class="speaker-industry-tag">HR Forward &bull; Leadership</span>
                 </div>
                 <div class="speaker-body">
-                    <h3 class="speaker-name">Marcus Chen</h3>
-                    <div class="speaker-title">Chief Marketing Officer</div>
-                    <div class="speaker-company">OmniRetail APAC</div>
-                    <div class="speaker-bio-hover">
-                        Spearheading AI-powered customer personalization platforms reaching 28 million monthly digital shoppers.
-                        <div class="speaker-topics">
-                            <span class="speaker-topic-badge">MarTech Architecture</span>
-                            <span class="speaker-topic-badge">Omnichannel</span>
-                        </div>
+                    <h3 class="speaker-name" style="font-size: 1rem; line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; margin-bottom: 0.4rem;">
+                        <a id="speaker-link-1" href="https://hrforwardasia.com/hr-forward-asia-launches-people-behind-the-people-series-in-celebration-of-hr-professionals-day/" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: none;">
+                            HR Forward Asia launches 'People Behind the People' series in celebration of HR Professionals Day
+                        </a>
+                    </h3>
+                    <div class="speaker-title" id="speaker-date-1" style="margin-bottom: 0.6rem; font-size: 0.8rem; font-weight: 700;">Sep 21, 2026</div>
+                    <div class="speaker-bio-hover" id="speaker-excerpt-1" style="font-size: 0.82rem; color: var(--text-muted); line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; border-top: 1px solid var(--border-light); padding-top: 0.75rem;">
+                        HR is often described in terms of what it delivers: policies, programmes, hires, retention numbers. Rarely is the spotlight turned inward...
                     </div>
                 </div>
             </div>
 
-            <!-- Speaker 3 -->
-            <div class="speaker-card">
-                <div class="speaker-photo-wrap" style="background: linear-gradient(135deg, #10B981, #065F46); display: flex; align-items: center; justify-content: center;">
-                    <div style="font-size: 5rem; color: #FFFFFF;">&#x1F9D1;&#x200D;&#x1F3EB;</div>
-                    <span class="speaker-industry-tag">HR Leadership</span>
+            <!-- Article 3 -->
+            <div class="speaker-card" id="speaker-card-2">
+                <div class="speaker-photo-wrap">
+                    <img class="speaker-photo" id="speaker-img-2" src="https://hrforwardasia.com/wp-content/uploads/2026/09/MakerLabs-Reema.webp" alt="Leader Feature Image" />
+                    <span class="speaker-industry-tag">HR Forward &bull; Leadership</span>
                 </div>
                 <div class="speaker-body">
-                    <h3 class="speaker-name">Amina Rahman</h3>
-                    <div class="speaker-title">Chief People Officer</div>
-                    <div class="speaker-company">Horizon Innovations Group</div>
-                    <div class="speaker-bio-hover">
-                        Renowned human capital strategist designing cross-border hybrid work systems and leadership retention models.
-                        <div class="speaker-topics">
-                            <span class="speaker-topic-badge">Future of Work</span>
-                            <span class="speaker-topic-badge">Culture Design</span>
-                        </div>
+                    <h3 class="speaker-name" style="font-size: 1rem; line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; margin-bottom: 0.4rem;">
+                        <a id="speaker-link-2" href="https://hrforwardasia.com/from-infrastructure-to-strategy-how-maker-labs-reema-bhullar-is-unifying-the-people-function/" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: none;">
+                            From infrastructure to strategy: how Maker Lab's Reema Bhullar is unifying the People function
+                        </a>
+                    </h3>
+                    <div class="speaker-title" id="speaker-date-2" style="margin-bottom: 0.6rem; font-size: 0.8rem; font-weight: 700;">Sep 21, 2026</div>
+                    <div class="speaker-bio-hover" id="speaker-excerpt-2" style="font-size: 0.82rem; color: var(--text-muted); line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; border-top: 1px solid var(--border-light); padding-top: 0.75rem;">
+                        Reema Bhullar, Global Head of People & Culture at Maker Lab, shares how she unifies HR operations across global regions...
                     </div>
                 </div>
             </div>
 
-            <!-- Speaker 4 -->
-            <div class="speaker-card">
-                <div class="speaker-photo-wrap" style="background: linear-gradient(135deg, #C8962A, #78350F); display: flex; align-items: center; justify-content: center;">
-                    <div style="font-size: 5rem; color: #FFFFFF;">&#x1F9D1;&#x200D;&#x2696;&#xFE0F;</div>
-                    <span class="speaker-industry-tag">Governance & Policy</span>
+            <!-- Article 4 -->
+            <div class="speaker-card" id="speaker-card-3">
+                <div class="speaker-photo-wrap">
+                    <img class="speaker-photo" id="speaker-img-3" src="https://hrforwardasia.com/wp-content/uploads/2026/09/Jeremy-John-Pintor-joins-East-West-Banking-Corporation-as-HR-business-partner.webp" alt="Leader Feature Image" />
+                    <span class="speaker-industry-tag">HR Forward &bull; Leadership</span>
                 </div>
                 <div class="speaker-body">
-                    <h3 class="speaker-name">Hiroshi Takahashi</h3>
-                    <div class="speaker-title">Managing Director</div>
-                    <div class="speaker-company">Asia Digital Trade Council</div>
-                    <div class="speaker-bio-hover">
-                        Advises multilateral economic chambers on digital assets, data sovereignty accords, and cross-border trade.
-                        <div class="speaker-topics">
-                            <span class="speaker-topic-badge">Data Policy</span>
-                            <span class="speaker-topic-badge">Digital Trade</span>
-                        </div>
+                    <h3 class="speaker-name" style="font-size: 1rem; line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; margin-bottom: 0.4rem;">
+                        <a id="speaker-link-3" href="https://hrforwardasia.com/jeremy-john-pintor-joins-east-west-banking-corporation-as-hr-business-partner/" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: none;">
+                            Jeremy John Pintor joins East West Banking Corporation as HR business partner
+                        </a>
+                    </h3>
+                    <div class="speaker-title" id="speaker-date-3" style="margin-bottom: 0.6rem; font-size: 0.8rem; font-weight: 700;">Sep 16, 2026</div>
+                    <div class="speaker-bio-hover" id="speaker-excerpt-3" style="font-size: 0.82rem; color: var(--text-muted); line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; border-top: 1px solid var(--border-light); padding-top: 0.75rem;">
+                        Jeremy John Pintor steps into a new leadership role as HR Business Partner at East West Banking Corporation...
                     </div>
                 </div>
             </div>
 
-            <!-- Speaker 5 -->
-            <div class="speaker-card">
-                <div class="speaker-photo-wrap" style="background: linear-gradient(135deg, #7E22CE, #3B0764); display: flex; align-items: center; justify-content: center;">
-                    <div style="font-size: 5rem; color: #FFFFFF;">&#x1F468;&#x200D;&#x1F680;</div>
-                    <span class="speaker-industry-tag">Venture & Growth</span>
+            <!-- Article 5 -->
+            <div class="speaker-card" id="speaker-card-4">
+                <div class="speaker-photo-wrap">
+                    <img class="speaker-photo" id="speaker-img-4" src="https://hrforwardasia.com/wp-content/uploads/2026/09/Shannon-O.-returns-to-facilities-management-as-ENGIE-Southeast-Asia-HRBP-director.webp" alt="Leader Feature Image" />
+                    <span class="speaker-industry-tag">HR Forward &bull; Leadership</span>
                 </div>
                 <div class="speaker-body">
-                    <h3 class="speaker-name">Sarah Jenkins</h3>
-                    <div class="speaker-title">General Partner</div>
-                    <div class="speaker-company">Apex Venture Capital Asia</div>
-                    <div class="speaker-bio-hover">
-                        Backing early-to-growth stage enterprise SaaS and AI tech companies with $450M under active management.
-                        <div class="speaker-topics">
-                            <span class="speaker-topic-badge">SaaS Valuation</span>
-                            <span class="speaker-topic-badge">Expansion</span>
-                        </div>
+                    <h3 class="speaker-name" style="font-size: 1rem; line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; margin-bottom: 0.4rem;">
+                        <a id="speaker-link-4" href="https://hrforwardasia.com/shannon-o-returns-to-facilities-management-as-engie-southeast-asia-hrbp-director/" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: none;">
+                            Shannon O. returns to facilities management as ENGIE Southeast Asia HRBP director
+                        </a>
+                    </h3>
+                    <div class="speaker-title" id="speaker-date-4" style="margin-bottom: 0.6rem; font-size: 0.8rem; font-weight: 700;">Sep 16, 2026</div>
+                    <div class="speaker-bio-hover" id="speaker-excerpt-4" style="font-size: 0.82rem; color: var(--text-muted); line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; border-top: 1px solid var(--border-light); padding-top: 0.75rem;">
+                        ENGIE Southeast Asia appoints Shannon O. as HRBP Director, steering regional workforce strategy and organizational development...
                     </div>
                 </div>
             </div>
-        </div>
-
-        <div style="text-align: center; margin-top: 3rem;">
-            <a href="#journey" class="btn btn-outline-navy">
-                View All Speakers & Panelists &rarr;
-            </a>
         </div>
     </div>
 </section>
@@ -2987,239 +3079,99 @@
             </p>
         </div>
 
-        <!-- Filter Tabs for the 3 Branches -->
-        <div class="insights-filters reveal">
-            <button class="filter-btn active" data-filter="all">All 3 Branches</button>
-            <button class="filter-btn" data-filter="marketech">MARKETECH APAC</button>
-            <button class="filter-btn" data-filter="uptech">UpTech Media</button>
-            <button class="filter-btn" data-filter="hrforward">HR Forward Asia</button>
-        </div>
-
         <!-- Cards Grid (Filtered strictly by the 3 branches and their respective topic domains) -->
         <div class="insights-grid" id="insights-grid">
 
             <!-- ============================================== -->
-            <!-- 1. MARKETECH APAC CARDS (Marketing, Tech, Platform, SME) -->
+            <!-- 1. MARKETECH APAC CARD (Latest from REST API) -->
             <!-- ============================================== -->
-            <div class="insight-card" data-branch="marketech">
-                <div class="insight-thumb it-orange">
-                    <span class="insight-type-badge">MARKETECH APAC &bull; Marketing</span>
-                    <div class="insight-format-icon">&#x1F4E3;</div>
+            <div class="insight-card" data-branch="marketech" id="marketech-card">
+                <div class="insight-thumb it-orange" id="marketech-thumb">
+                    <img id="marketech-post-img" src="https://marketech-apac.com/wp-content/uploads/2026/09/Rakuten-opens-Hangzhou-subsidiary-to-deepen-support-for-Chinese-cross-border-merchants-.webp" alt="Featured Image" style="width:100%; height:100%; object-fit:cover; position:absolute; top:0; left:0; z-index:0; transition: transform 0.4s ease;" />
+                    <span class="insight-type-badge" style="z-index: 1;">MARKETECH APAC &bull; Latest</span>
                 </div>
                 <div class="insight-body">
                     <div>
                         <div class="insight-date-row">
                             <span style="font-weight:700; color:var(--orange);">MARKETECH APAC</span>
-                            <span>Oct 2025</span>
+                            <span id="marketech-post-date">Sep 22, 2026</span>
                         </div>
-                        <h3 class="insight-title">Omnichannel Brand Affinity & Performance Marketing in Asia</h3>
-                        <p class="insight-desc">
-                            How premier APAC CMOs are harmonizing emotional brand resonance with rigorous programmatic performance marketing to maximize customer lifetime value.
+                        <h3 class="insight-title" id="marketech-post-title">
+                            <a id="marketech-post-title-link" href="https://marketech-apac.com/rakuten-opens-hangzhou-subsidiary-to-deepen-support-for-Chinese-cross-border-merchants/" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: none;">
+                                Rakuten opens Hangzhou subsidiary to deepen support for Chinese cross-border merchants
+                            </a>
+                        </h3>
+                        <p class="insight-desc" id="marketech-post-excerpt">
+                            Tokyo, Japan – Rakuten Group announced the establishment of Rakuten Cross-Border E-Commerce China Co., Ltd., in Hangzhou, China, aimed at enhancing recruitment and operational support for Chinese sellers on Rakuten Ichiba, Japan's leading online marketplace.
                         </p>
                     </div>
                     <div class="insight-footer">
-                        <span style="font-size: 0.78rem; font-weight: 600; color: var(--text-muted);">Topic: Marketing &bull; 5 Min</span>
-                        <a href="{{ url('/insights') }}" class="insight-link">Read More &rarr;</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="insight-card" data-branch="marketech">
-                <div class="insight-thumb it-orange">
-                    <span class="insight-type-badge">MARKETECH APAC &bull; Technology & Platform</span>
-                    <div class="insight-format-icon">&#x1F5A5;&#xFE0F;</div>
-                </div>
-                <div class="insight-body">
-                    <div>
-                        <div class="insight-date-row">
-                            <span style="font-weight:700; color:var(--orange);">MARKETECH APAC</span>
-                            <span>Sep 2025</span>
-                        </div>
-                        <h3 class="insight-title">AdTech Platform Evolution & Privacy-First Measurement</h3>
-                        <p class="insight-desc">
-                            An architectural guide for digital marketers deploying decentralized clean rooms and synthetic cohorts in response to evolving privacy guidelines.
-                        </p>
-                    </div>
-                    <div class="insight-footer">
-                        <span style="font-size: 0.78rem; font-weight: 600; color: var(--text-muted);">Topic: Platform &bull; 7 Min</span>
-                        <a href="{{ url('/insights') }}" class="insight-link">Read More &rarr;</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="insight-card" data-branch="marketech">
-                <div class="insight-thumb it-orange">
-                    <span class="insight-type-badge">MARKETECH APAC &bull; SME</span>
-                    <div class="insight-format-icon">&#x1F4CA;</div>
-                </div>
-                <div class="insight-body">
-                    <div>
-                        <div class="insight-date-row">
-                            <span style="font-weight:700; color:var(--orange);">MARKETECH APAC</span>
-                            <span>Aug 2025</span>
-                        </div>
-                        <h3 class="insight-title">The SME Playbook: Scaling Digital Commerce in Southeast Asia</h3>
-                        <p class="insight-desc">
-                            Practical tactics for small and medium enterprises leveraging automated ad platforms, localized social commerce, and marketplace integrations.
-                        </p>
-                    </div>
-                    <div class="insight-footer">
-                        <span style="font-size: 0.78rem; font-weight: 600; color: var(--text-muted);">Topic: SME &bull; 6 Min</span>
-                        <a href="{{ url('/insights') }}" class="insight-link">Read More &rarr;</a>
+                        <span style="font-size: 0.78rem; font-weight: 600; color: var(--text-muted);" id="marketech-post-topic">Latest Article</span>
+                        <a id="marketech-post-readmore" href="https://marketech-apac.com/rakuten-opens-hangzhou-subsidiary-to-deepen-support-for-Chinese-cross-border-merchants/" target="_blank" rel="noopener noreferrer" class="insight-link">Read Article &rarr;</a>
                     </div>
                 </div>
             </div>
 
             <!-- ============================================== -->
-            <!-- 2. UPTECH MEDIA CARDS (Always Moving Upwards: AI, CX, Cybersecurity, Data, E-commerce, Fintech) -->
+            <!-- 2. UPTECH MEDIA CARD (Latest from REST API) -->
             <!-- ============================================== -->
-            <div class="insight-card" data-branch="uptech">
-                <div class="insight-thumb it-blue">
-                    <span class="insight-type-badge">UpTech Media &bull; AI & Data</span>
-                    <div class="insight-format-icon">&#x1F916;</div>
+            <div class="insight-card" data-branch="uptech" id="uptech-card">
+                <div class="insight-thumb it-blue" id="uptech-thumb">
+                    <img id="uptech-post-img" src="https://uptech-media.com/wp-content/uploads/2026/09/Philippines-expands-eGovPH-super-app-with-new-AI-capabilities-.webp" alt="Featured Image" style="width:100%; height:100%; object-fit:cover; position:absolute; top:0; left:0; z-index:0; transition: transform 0.4s ease;" />
+                    <span class="insight-type-badge" style="z-index: 1;">UpTech Media &bull; Latest</span>
                 </div>
                 <div class="insight-body">
                     <div>
                         <div class="insight-date-row">
                             <span style="font-weight:700; color:var(--blue);">UPTECH MEDIA</span>
-                            <span>Oct 2025</span>
+                            <span id="uptech-post-date">Sep 22, 2026</span>
                         </div>
-                        <h3 class="insight-title">Enterprise AI & Distributed Data Infrastructure in Asia</h3>
-                        <p class="insight-desc">
-                            A field report examining how leading financial and logistics enterprises across Asia are deploying autonomous multi-agent systems and sovereign data lakes.
+                        <h3 class="insight-title" id="uptech-post-title">
+                            <a id="uptech-post-title-link" href="https://uptech-media.com/philippines-expands-egovph-super-app-with-new-ai-capabilities/" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: none;">
+                                Philippines expands eGovPH super app with new AI capabilities
+                            </a>
+                        </h3>
+                        <p class="insight-desc" id="uptech-post-excerpt">
+                            Manila, Philippines – The Department of Information and Communications Technology (DICT) has formally launched eGovAI, integrating artificial intelligence capabilities into the eGovPH Super App.
                         </p>
                     </div>
                     <div class="insight-footer">
-                        <span style="font-size: 0.78rem; font-weight: 600; color: var(--text-muted);">Topic: AI &bull; 8 Min</span>
-                        <a href="{{ url('/insights') }}" class="insight-link">Read More &rarr;</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="insight-card" data-branch="uptech">
-                <div class="insight-thumb it-blue">
-                    <span class="insight-type-badge">UpTech Media &bull; CX & Cybersecurity</span>
-                    <div class="insight-format-icon">&#x1F6E1;&#xFE0F;</div>
-                </div>
-                <div class="insight-body">
-                    <div>
-                        <div class="insight-date-row">
-                            <span style="font-weight:700; color:var(--blue);">UPTECH MEDIA</span>
-                            <span>Sep 2025</span>
-                        </div>
-                        <h3 class="insight-title">Zero-Trust Architecture Meets Frictionless Customer Experience</h3>
-                        <p class="insight-desc">
-                            Implementing identity verification, micro-segmentation, and quantum-resilient security without creating friction for digital banking and retail users.
-                        </p>
-                    </div>
-                    <div class="insight-footer">
-                        <span style="font-size: 0.78rem; font-weight: 600; color: var(--text-muted);">Topic: Cybersecurity &bull; 6 Min</span>
-                        <a href="{{ url('/insights') }}" class="insight-link">Read More &rarr;</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="insight-card" data-branch="uptech">
-                <div class="insight-thumb it-blue">
-                    <span class="insight-type-badge">UpTech Media &bull; Fintech & E-commerce</span>
-                    <div class="insight-format-icon">&#x1F4B3;</div>
-                </div>
-                <div class="insight-body">
-                    <div>
-                        <div class="insight-date-row">
-                            <span style="font-weight:700; color:var(--blue);">UPTECH MEDIA</span>
-                            <span>Aug 2025</span>
-                        </div>
-                        <h3 class="insight-title">Cross-Border QR & Real-Time Settlement Rails in Asia-Pacific</h3>
-                        <p class="insight-desc">
-                            How central bank multilateral arrangements and instant payment networks are disintermediating legacy correspondent banking for Asian consumer commerce.
-                        </p>
-                    </div>
-                    <div class="insight-footer">
-                        <span style="font-size: 0.78rem; font-weight: 600; color: var(--text-muted);">Topic: Fintech &bull; 7 Min</span>
-                        <a href="{{ url('/insights') }}" class="insight-link">Read More &rarr;</a>
+                        <span style="font-size: 0.78rem; font-weight: 600; color: var(--text-muted);" id="uptech-post-topic">Latest Article</span>
+                        <a id="uptech-post-readmore" href="https://uptech-media.com/philippines-expands-egovph-super-app-with-new-ai-capabilities/" target="_blank" rel="noopener noreferrer" class="insight-link">Read Article &rarr;</a>
                     </div>
                 </div>
             </div>
 
             <!-- ============================================== -->
-            <!-- 3. HR FORWARD ASIA CARDS (Talent, Leadership, Employee Experience, Total Rewards, HR Tech, Recruitment, Legal) -->
+            <!-- 3. HR FORWARD ASIA CARD (Latest from REST API) -->
             <!-- ============================================== -->
-            <div class="insight-card" data-branch="hrforward">
-                <div class="insight-thumb it-green">
-                    <span class="insight-type-badge">HR Forward &bull; Talent & Leadership</span>
-                    <div class="insight-format-icon">&#x1F9D1;&#x200D;&#x1F3EB;</div>
+            <div class="insight-card" data-branch="hrforward" id="hrforward-card">
+                <div class="insight-thumb it-green" id="hrforward-thumb">
+                    <img id="hrforward-post-img" src="https://hrforwardasia.com/wp-content/uploads/2026/09/AI-fast-tracks-Gen-Zs-path-to-leadership-report-finds.webp" alt="Featured Image" style="width:100%; height:100%; object-fit:cover; position:absolute; top:0; left:0; z-index:0; transition: transform 0.4s ease;" />
+                    <span class="insight-type-badge" style="z-index: 1;">HR Forward &bull; Latest</span>
                 </div>
                 <div class="insight-body">
                     <div>
                         <div class="insight-date-row">
                             <span style="font-weight:700; color:var(--green);">HR FORWARD ASIA</span>
-                            <span>Oct 2025</span>
+                            <span id="hrforward-post-date">Sep 21, 2026</span>
                         </div>
-                        <h3 class="insight-title">Developing Future-Ready Leaders for Cross-Border Teams</h3>
-                        <p class="insight-desc">
-                            Boardroom frameworks for nurturing cross-cultural executive pipelines, adaptive skills inventories, and human-centered leadership across Asia-Pacific.
+                        <h3 class="insight-title" id="hrforward-post-title">
+                            <a id="hrforward-post-title-link" href="https://hrforwardasia.com/ai-fast-tracks-gen-zs-path-to-leadership-report-finds/" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: none;">
+                                AI fast-tracks Gen Z's path to leadership, report finds
+                            </a>
+                        </h3>
+                        <p class="insight-desc" id="hrforward-post-excerpt">
+                            Singapore – Artificial intelligence (AI) is changing how organisations identify, develop and promote future leaders, with 92% of senior leaders saying they would likely appoint a Gen Z candidate to a senior leadership role, according to new research.
                         </p>
                     </div>
                     <div class="insight-footer">
-                        <span style="font-size: 0.78rem; font-weight: 600; color: var(--text-muted);">Topic: Leadership &bull; 6 Min</span>
-                        <a href="{{ url('/insights') }}" class="insight-link">Read More &rarr;</a>
+                        <span style="font-size: 0.78rem; font-weight: 600; color: var(--text-muted);" id="hrforward-post-topic">Latest Article</span>
+                        <a id="hrforward-post-readmore" href="https://hrforwardasia.com/ai-fast-tracks-gen-zs-path-to-leadership-report-finds/" target="_blank" rel="noopener noreferrer" class="insight-link">Read Article &rarr;</a>
                     </div>
                 </div>
             </div>
 
-            <div class="insight-card" data-branch="hrforward">
-                <div class="insight-thumb it-green">
-                    <span class="insight-type-badge">HR Forward &bull; Experience & Total Rewards</span>
-                    <div class="insight-format-icon">&#x1F3AF;</div>
-                </div>
-                <div class="insight-body">
-                    <div>
-                        <div class="insight-date-row">
-                            <span style="font-weight:700; color:var(--green);">HR FORWARD ASIA</span>
-                            <span>Sep 2025</span>
-                        </div>
-                        <h3 class="insight-title">Designing High-Trust Hybrid Workplaces & Tailored Rewards</h3>
-                        <p class="insight-desc">
-                            Research findings from 300 Asian organizations examining how flexibility, personalized wellness stipends, and performance equity reduce voluntary turnover.
-                        </p>
-                    </div>
-                    <div class="insight-footer">
-                        <span style="font-size: 0.78rem; font-weight: 600; color: var(--text-muted);">Topic: Rewards &bull; 5 Min</span>
-                        <a href="{{ url('/insights') }}" class="insight-link">Read More &rarr;</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="insight-card" data-branch="hrforward">
-                <div class="insight-thumb it-green">
-                    <span class="insight-type-badge">HR Forward &bull; HR Tech & Legal</span>
-                    <div class="insight-format-icon">&#x2696;&#xFE0F;</div>
-                </div>
-                <div class="insight-body">
-                    <div>
-                        <div class="insight-date-row">
-                            <span style="font-weight:700; color:var(--green);">HR FORWARD ASIA</span>
-                            <span>Aug 2025</span>
-                        </div>
-                        <h3 class="insight-title">Ethical AI in Recruitment & Pan-Asian Labor Compliance</h3>
-                        <p class="insight-desc">
-                            A regulatory briefing for People Chiefs on navigating multi-jurisdiction labor regulations, Employer of Record (EOR) models, and automated talent screening.
-                        </p>
-                    </div>
-                    <div class="insight-footer">
-                        <span style="font-size: 0.78rem; font-weight: 600; color: var(--text-muted);">Topic: Legal &bull; 8 Min</span>
-                        <a href="{{ url('/insights') }}" class="insight-link">Read More &rarr;</a>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-
-        <div style="text-align: center; margin-top: 3.5rem;">
-            <a href="{{ url('/insights') }}" class="btn btn-outline-navy" id="explore-all-insights-btn">
-                Explore All Insights & Archives &rarr;
-            </a>
         </div>
     </div>
 </section>
@@ -3341,8 +3293,9 @@
     </div>
 </section>
 
-<!-- ===== SECTION 12: NEWSLETTER & COMMUNITY ===== -->
-<section id="newsletter" class="section-padding">
+<!-- ===== SECTION 12: NEWSLETTER & COMMUNITY (STAY CONNECTED) ===== -->
+<section id="stay-connected" class="section-padding" style="position: relative;">
+    <span id="newsletter" style="position: absolute; top: -90px;"></span>
     <div class="container">
         <div class="newsletter-box reveal">
             <div class="newsletter-inner">
@@ -3401,9 +3354,6 @@
                 Discover unprecedented opportunities to connect with industry leaders, participate in premier events, collaborate across borders, and grow within the WECON ecosystem.
             </p>
             <div class="final-cta-buttons">
-                <a href="#insights" class="btn btn-white" id="final-explore-btn">
-                    Explore WECON <span class="cta-arrow">&rarr;</span>
-                </a>
                 <button class="btn btn-outline-white open-partner-modal" data-subject="General Engagement Inquiry">
                     Contact Our Team
                 </button>
@@ -3452,7 +3402,7 @@
                     <li><a href="https://marketech-apac.com/featured-events/" target="_blank" rel="noopener noreferrer">Awards Series</a></li>
                     <li><a href="#speakers">Industry Speakers</a></li>
                     <li><a href="#journey">Strategic Pathways</a></li>
-                    <li><a href="{{ url('/insights') }}">Insights & Reports</a></li>
+                    <li><a href="#insights">Insights & Reports</a></li>
                 </ul>
             </div>
 
@@ -3860,7 +3810,213 @@
         }, { threshold: 0.3 }).observe(aboutSection);
     }
 
-    // 10. Modal Dialog Controllers
+    // 10. Fetch latest MARKETECH APAC post live from WordPress REST API
+    async function fetchLatestMarketechPost() {
+        try {
+            const response = await fetch('https://marketech-apac.com/wp-json/wp/v2/posts?_embed=1&per_page=1');
+            if (!response.ok) return;
+            const data = await response.json();
+            if (!data || !data.length) return;
+
+            const post = data[0];
+            const title = post.title?.rendered || '';
+            const link = post.link || '#';
+            const dateStr = post.date ? new Date(post.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) : '';
+            const tempDiv = document.createElement('div');
+            tempDiv.innerHTML = post.excerpt?.rendered || '';
+            const excerpt = tempDiv.textContent || tempDiv.innerText || '';
+            const featuredImg = post._embedded?.['wp:featuredmedia']?.[0]?.source_url;
+
+            const titleEl = document.getElementById('marketech-post-title-link');
+            const dateEl = document.getElementById('marketech-post-date');
+            const excerptEl = document.getElementById('marketech-post-excerpt');
+            const imgEl = document.getElementById('marketech-post-img');
+            const readMoreEl = document.getElementById('marketech-post-readmore');
+
+            if (titleEl) { titleEl.textContent = title; titleEl.href = link; }
+            if (dateEl && dateStr) dateEl.textContent = dateStr;
+            if (excerptEl && excerpt) excerptEl.textContent = excerpt;
+            if (readMoreEl) readMoreEl.href = link;
+            if (imgEl && featuredImg) {
+                imgEl.src = featuredImg;
+                imgEl.style.display = 'block';
+            }
+        } catch (err) {
+            console.warn('Could not fetch latest MARKETECH APAC post:', err);
+        }
+    }
+    fetchLatestMarketechPost();
+
+    // Fetch latest post from UpTech Media WordPress REST API
+    async function fetchLatestUptechPost() {
+        try {
+            const response = await fetch('https://uptech-media.com/wp-json/wp/v2/posts?_embed=1&per_page=1');
+            if (!response.ok) return;
+            const data = await response.json();
+            if (!data || !data.length) return;
+
+            const post = data[0];
+            const title = post.title?.rendered || '';
+            const link = post.link || '#';
+            const dateStr = post.date ? new Date(post.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) : '';
+            const tempDiv = document.createElement('div');
+            tempDiv.innerHTML = post.excerpt?.rendered || '';
+            const excerpt = tempDiv.textContent || tempDiv.innerText || '';
+            const featuredImg = post._embedded?.['wp:featuredmedia']?.[0]?.source_url;
+
+            const titleEl = document.getElementById('uptech-post-title-link');
+            const dateEl = document.getElementById('uptech-post-date');
+            const excerptEl = document.getElementById('uptech-post-excerpt');
+            const imgEl = document.getElementById('uptech-post-img');
+            const readMoreEl = document.getElementById('uptech-post-readmore');
+
+            if (titleEl) { titleEl.textContent = title; titleEl.href = link; }
+            if (dateEl && dateStr) dateEl.textContent = dateStr;
+            if (excerptEl && excerpt) excerptEl.textContent = excerpt;
+            if (readMoreEl) readMoreEl.href = link;
+            if (imgEl && featuredImg) {
+                imgEl.src = featuredImg;
+                imgEl.style.display = 'block';
+            }
+        } catch (err) {
+            console.warn('Could not fetch latest UpTech Media post:', err);
+        }
+    }
+    fetchLatestUptechPost();
+
+    // Fetch latest post from HR Forward Asia WordPress REST API
+    async function fetchLatestHrforwardPost() {
+        try {
+            const response = await fetch('https://hrforwardasia.com/wp-json/wp/v2/posts?_embed=1&per_page=1');
+            if (!response.ok) return;
+            const data = await response.json();
+            if (!data || !data.length) return;
+
+            const post = data[0];
+            const tempTitleDiv = document.createElement('div');
+            tempTitleDiv.innerHTML = post.title?.rendered || '';
+            const title = tempTitleDiv.textContent || tempTitleDiv.innerText || '';
+
+            const link = post.link || '#';
+            const dateStr = post.date ? new Date(post.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) : '';
+            const tempDiv = document.createElement('div');
+            tempDiv.innerHTML = post.excerpt?.rendered || '';
+            const excerpt = tempDiv.textContent || tempDiv.innerText || '';
+            const featuredImg = post._embedded?.['wp:featuredmedia']?.[0]?.source_url;
+
+            const titleEl = document.getElementById('hrforward-post-title-link');
+            const dateEl = document.getElementById('hrforward-post-date');
+            const excerptEl = document.getElementById('hrforward-post-excerpt');
+            const imgEl = document.getElementById('hrforward-post-img');
+            const readMoreEl = document.getElementById('hrforward-post-readmore');
+
+            if (titleEl) { titleEl.textContent = title; titleEl.href = link; }
+            if (dateEl && dateStr) dateEl.textContent = dateStr;
+            if (excerptEl && excerpt) excerptEl.textContent = excerpt;
+            if (readMoreEl) readMoreEl.href = link;
+            if (imgEl && featuredImg) {
+                imgEl.src = featuredImg;
+                imgEl.style.display = 'block';
+            }
+        } catch (err) {
+            console.warn('Could not fetch latest HR Forward Asia post:', err);
+        }
+    }
+    fetchLatestHrforwardPost();
+
+    // Fetch 5 latest HR Forward Asia Leadership posts for Speakers section
+    async function fetchHrforwardLeadershipPosts() {
+        try {
+            const response = await fetch('https://hrforwardasia.com/wp-json/wp/v2/posts?categories=10&_embed=1&per_page=5');
+            if (!response.ok) return;
+            const posts = await response.json();
+            if (!posts || !posts.length) return;
+
+            posts.forEach((post, index) => {
+                const tempTitleDiv = document.createElement('div');
+                tempTitleDiv.innerHTML = post.title?.rendered || '';
+                const title = tempTitleDiv.textContent || tempTitleDiv.innerText || '';
+
+                const link = post.link || '#';
+                const dateStr = post.date ? new Date(post.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) : '';
+                const tempDiv = document.createElement('div');
+                tempDiv.innerHTML = post.excerpt?.rendered || '';
+                const excerpt = tempDiv.textContent || tempDiv.innerText || '';
+                const featuredImg = post._embedded?.['wp:featuredmedia']?.[0]?.source_url;
+
+                const linkEl = document.getElementById(`speaker-link-${index}`);
+                const dateEl = document.getElementById(`speaker-date-${index}`);
+                const excerptEl = document.getElementById(`speaker-excerpt-${index}`);
+                const imgEl = document.getElementById(`speaker-img-${index}`);
+
+                if (linkEl) { linkEl.textContent = title; linkEl.href = link; }
+                if (dateEl && dateStr) dateEl.textContent = dateStr;
+                if (excerptEl && excerpt) excerptEl.textContent = excerpt;
+                if (imgEl && featuredImg) imgEl.src = featuredImg;
+            });
+        } catch (err) {
+            console.warn('Could not fetch HR Forward Leadership posts:', err);
+        }
+    }
+    fetchHrforwardLeadershipPosts();
+
+    // 10.5. Who We Are Section - 3 Branches Showcase Slideshow & Dots Controller
+    const branchSlides = document.querySelectorAll('.branch-slide');
+    const branchDots = document.querySelectorAll('.branch-dot');
+    let currentBranchIdx = 0;
+
+    function activateBranchSlide(index) {
+        branchSlides.forEach((slide, i) => {
+            slide.classList.toggle('active', i === index);
+        });
+        branchDots.forEach((dot, i) => {
+            dot.classList.toggle('active', i === index);
+        });
+        currentBranchIdx = index;
+    }
+
+    branchDots.forEach(dot => {
+        dot.addEventListener('click', () => {
+            const slideIdx = parseInt(dot.dataset.slide, 10);
+            activateBranchSlide(slideIdx);
+        });
+    });
+
+    const branchPrevBtn = document.getElementById('branch-prev-btn');
+    const branchNextBtn = document.getElementById('branch-next-btn');
+
+    if (branchPrevBtn) {
+        branchPrevBtn.addEventListener('click', () => {
+            const prevIdx = (currentBranchIdx - 1 + branchSlides.length) % branchSlides.length;
+            activateBranchSlide(prevIdx);
+        });
+    }
+
+    if (branchNextBtn) {
+        branchNextBtn.addEventListener('click', () => {
+            const nextIdx = (currentBranchIdx + 1) % branchSlides.length;
+            activateBranchSlide(nextIdx);
+        });
+    }
+
+    // Auto rotate slides every 5 seconds
+    let branchAutoInterval = setInterval(() => {
+        const nextIdx = (currentBranchIdx + 1) % branchSlides.length;
+        activateBranchSlide(nextIdx);
+    }, 5000);
+
+    const showcaseEl = document.querySelector('.about-branches-showcase');
+    if (showcaseEl) {
+        showcaseEl.addEventListener('mouseenter', () => clearInterval(branchAutoInterval));
+        showcaseEl.addEventListener('mouseleave', () => {
+            branchAutoInterval = setInterval(() => {
+                const nextIdx = (currentBranchIdx + 1) % branchSlides.length;
+                activateBranchSlide(nextIdx);
+            }, 5000);
+        });
+    }
+
+    // 11. Modal Dialog Controllers
     const modals = document.querySelectorAll('.modal-overlay');
     function closeModal() {
         modals.forEach(m => m.classList.remove('open'));

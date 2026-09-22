@@ -90,7 +90,7 @@ html = html.replace(authRegex, (match) => {
 });
 
 // 6. Replace route and URL helpers
-html = html.replace(/href="\{\{\s*url\('\/insights'\)\s*\}\}"/g, 'href="insights.html"');
+html = html.replace(/href="\{\{\s*url\('\/insights'\)\s*\}\}"/g, 'href="#insights"');
 html = html.replace(/href="\{\{\s*url\('\/events'\)\s*\}\}"/g, 'href="https://marketech-apac.com/featured-events/" target="_blank" rel="noopener noreferrer"');
 html = html.replace(/href="\{\{\s*url\('\/'\)\s*\}\}"/g, 'href="index.html"');
 
@@ -98,31 +98,3 @@ html = html.replace(/href="\{\{\s*url\('\/'\)\s*\}\}"/g, 'href="index.html"');
 const indexHtmlPath = path.join(distDir, 'index.html');
 fs.writeFileSync(indexHtmlPath, html, 'utf8');
 console.log('✓ Successfully generated dist/index.html');
-
-// Read and compile insights.blade.php
-const insightsBladePath = path.join(viewsDir, 'insights.blade.php');
-if (fs.existsSync(insightsBladePath)) {
-    let insightsHtml = fs.readFileSync(insightsBladePath, 'utf8');
-    insightsHtml = insightsHtml.replace(/<html\s+lang="\{\{[^}]+\}\}">/i, '<html lang="en">');
-    insightsHtml = insightsHtml.replace(/@vite\(\[[^\]]+\]\)/g, assetTags.trim());
-    insightsHtml = insightsHtml.replace(/url\(['"]\{\{\s*asset\(['"]([^'"]+)['"]\)\s*\}\}['"]\)/g, "url('$1')");
-    insightsHtml = insightsHtml.replace(/src="\{\{\s*asset\(['"]([^'"]+)['"]\)\s*\}\}\?v=\{\{[^}]+\}\}"/g, 'src="$1"');
-    insightsHtml = insightsHtml.replace(/src="\{\{\s*asset\(['"]([^'"]+)['"]\)\s*\}\}"/g, 'src="$1"');
-    insightsHtml = insightsHtml.replace(/href="\{\{\s*url\('\/insights'\)\s*\}\}"/g, 'href="insights.html"');
-    insightsHtml = insightsHtml.replace(/href="\{\{\s*url\('\/events'\)\s*\}\}"/g, 'href="https://marketech-apac.com/featured-events/" target="_blank" rel="noopener noreferrer"');
-    insightsHtml = insightsHtml.replace(/href="\{\{\s*url\('\/'\)\s*\}\}"/g, 'href="index.html"');
-
-    const insightsHtmlPath = path.join(distDir, 'insights.html');
-    fs.writeFileSync(insightsHtmlPath, insightsHtml, 'utf8');
-    console.log('✓ Successfully generated dist/insights.html');
-
-    // Also generate dist/insights/index.html for clean URL servers
-    const insightsSubDir = path.join(distDir, 'insights');
-    if (!fs.existsSync(insightsSubDir)) fs.mkdirSync(insightsSubDir, { recursive: true });
-    let subHtml = insightsHtml.replace(/href="\.\/assets\//g, 'href="../assets/');
-    subHtml = subHtml.replace(/src="\.\/assets\//g, 'src="../assets/');
-    subHtml = subHtml.replace(/src="images\//g, 'src="../images/');
-    subHtml = subHtml.replace(/url\('images\//g, "url('../images/");
-    fs.writeFileSync(path.join(insightsSubDir, 'index.html'), subHtml, 'utf8');
-    console.log('✓ Successfully generated dist/insights/index.html');
-}

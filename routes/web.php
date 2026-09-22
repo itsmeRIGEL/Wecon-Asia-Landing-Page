@@ -7,7 +7,7 @@ Route::get('/', function () {
 });
 
 Route::get('/insights', function () {
-    return view('insights');
+    return redirect('/#insights');
 });
 
 Route::get('/events', function () {
