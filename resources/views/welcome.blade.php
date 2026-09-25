@@ -271,17 +271,19 @@
         .nav-logo {
             display: inline-flex;
             align-items: center;
-            gap: 0.65rem;
             text-decoration: none;
             flex-shrink: 0;
-            transition: transform 0.2s ease;
+            height: 52px;
+            transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
         }
-        .nav-logo:hover { transform: scale(1.02); }
+        .nav-logo:hover { transform: scale(1.03); }
         .nav-logo-img {
-            height: 42px;
+            height: 115px;
             width: auto;
             object-fit: contain;
             display: block;
+            margin: -28px 25px;
+            filter: drop-shadow(0 2px 4px rgba(11, 43, 85, 0.05));
         }
         .nav-links {
             display: flex;
@@ -2156,6 +2158,26 @@
             gap: 3rem;
             margin-bottom: 4rem;
         }
+        .footer-logo-link {
+            display: inline-flex;
+            align-items: center;
+            text-decoration: none;
+            transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s ease;
+        }
+        .footer-logo-link:hover {
+            transform: scale(1.03);
+            opacity: 1;
+        }
+        .footer-logo-img {
+            height: 112px;
+            width: auto;
+            object-fit: contain;
+            display: block;
+            margin: -30px -8px;
+            filter: brightness(0) invert(1);
+            opacity: 0.95;
+            transition: opacity 0.2s ease;
+        }
         .footer-brand-col p {
             font-size: 0.9rem;
             color: #94A3B8;
@@ -2360,6 +2382,11 @@
                 width: calc(100% - 1.5rem);
                 height: 62px;
             }
+            .nav-logo { height: 46px; }
+            .nav-logo-img {
+                height: 96px;
+                margin: -25px -6px;
+            }
             .nav-container { padding: 0 1.25rem; justify-content: space-between; }
             .nav-toggle { display: flex; }
             .nav-links {
@@ -2440,7 +2467,7 @@
     <div class="nav-container">
         <!-- Logo Lockup -->
         <a href="#hero" class="nav-logo" aria-label="WECON Home">
-            <img src="{{ asset('images/logo1.png') }}?v={{ file_exists(public_path('images/logo1.png')) ? filemtime(public_path('images/logo1.png')) : 1 }}" alt="WECON" class="nav-logo-img">
+            <img src="{{ asset('images/WECON ASIA (2LINE)_Horizontal_Coloured.png') }}?v={{ file_exists(public_path('images/WECON ASIA (2LINE)_Horizontal_Coloured.png')) ? filemtime(public_path('images/WECON ASIA (2LINE)_Horizontal_Coloured.png')) : 1 }}" alt="WECON ASIA" class="nav-logo-img">
         </a>
 
         <!-- Mobile Navigation Toggle -->
@@ -3368,8 +3395,8 @@
         <div class="footer-grid">
             <!-- Brand Column -->
             <div class="footer-brand-col">
-                <a href="#hero" class="nav-logo" aria-label="WECON Home">
-                    <img src="{{ asset('images/logo1.png') }}?v={{ file_exists(public_path('images/logo1.png')) ? filemtime(public_path('images/logo1.png')) : 1 }}" alt="WECON" style="height: 40px; filter: brightness(0) invert(1);">
+                <a href="#hero" class="footer-logo-link" aria-label="WECON Home">
+                    <img src="{{ asset('images/WECON ASIA (2LINE)_Horizontal_Coloured.png') }}?v={{ file_exists(public_path('images/WECON ASIA (2LINE)_Horizontal_Coloured.png')) ? filemtime(public_path('images/WECON ASIA (2LINE)_Horizontal_Coloured.png')) : 1 }}" alt="WECON ASIA" class="footer-logo-img">
                 </a>
                 <p>
                     Wecon Asia Media Group, Inc. is an Asia-Pacific media, events, and business information ecosystem connecting leaders, ideas, and transformative opportunities.
